@@ -1,6 +1,6 @@
 # $BRO Token: The Token of Kadena Brothers
 
-## Lain characteristics.
+## Main characteristics.
 
 Low limited supply: **100.0 $BRO** in total
 
