@@ -1,0 +1,78 @@
+(load "kadena_repl_sandbox/kda-env/init.repl")
+(load "init.repl")
+
+
+(begin-tx)
+(use BRO_NS.bro-registry)
+; Password is "My-Password"
+(print (+ "Alice :" (encrypt-tg-account "@alice" "My-Password")))
+(print (+ "Bob :"  (encrypt-tg-account "@bob" "My-Password")))
+(print (+ "Bob-Second :"  (encrypt-tg-account "@bobSecond" "My-Password")))
+
+; Not signed
+(expect-failure "Not signed" "Keyset failure"
+                (register "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus" (base64-encode "alice")))
+
+(env-sigs [{'key:"bot", 'caps:[(BOT-OPERATOR)]}])
+
+; Register a non encrypted account
+(expect-failure "Not encrypted" "not encrypted"
+                (register "@alice" (base64-encode "alice")))
+
+; Register a non encrypted account
+(expect-failure "Not encrypted" "not encrypted"
+                (register "enc_@alice" (base64-encode "alice")))
+
+; Register a non base64 kadena account
+(expect-failure "No base64" "not in Base64"
+                (register "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus" "k:alice"))
+
+
+(register "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus" (base64-encode "alice"))
+
+(print (list-accounts))
+(expect-that "List accounts should be size of 1 " (compose (length) (= 1)) (list-accounts))
+
+; Register Bob
+(register "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw" (base64-encode "bob"))
+
+(expect-that "List accounts should be size of 2" (compose (length) (= 2)) (list-accounts))
+
+(commit-tx)
+
+
+(begin-tx)
+(use BRO_NS.bro-registry)
+
+(env-sigs [{'key:"bot", 'caps:[(BOT-OPERATOR)]}])
+
+; Try to register bob again but with a new encrypted TG account
+(expect-failure "Kadena account already used" "Kadena account already registered"
+                (register "enc_fyhMPp2frqISVVE5wpHQni1sxGuIcJiBfv4YzfBB77U" (base64-encode "bob")))
+
+; Now unregister bob TG account
+(unregister "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+
+; And we are able to recylce the account
+(register "enc_fyhMPp2frqISVVE5wpHQni1sxGuIcJiBfv4YzfBB77U" (base64-encode "bob"))
+
+; Alice will try to change it's account
+(register "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus" (base64-encode "alice-new-account"))
+
+(expect-that "List accounts should be size of 2" (compose (length) (= 2)) (list-accounts))
+
+(commit-tx)
+(env-sigs [])
+
+
+(begin-tx)
+(use BRO_NS.bro-registry)
+; Check some accounts retrieval
+
+(expect "Retrieve @alice" "alice-new-account" (get-bro-account "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus"))
+
+(expect "Retrieve @bobSecond" "bob" (get-bro-account "enc_fyhMPp2frqISVVE5wpHQni1sxGuIcJiBfv4YzfBB77U"))
+
+; HSould not work because unregistered
+(expect-failure "Retrieve @bob" "was not registered" (get-bro-account "enc_fyhMPp2frqISVVE5wpHQni1sxGuIcJiBfv4YzfBB77Us"))
+(commit-tx)

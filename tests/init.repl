@@ -1,0 +1,16 @@
+(begin-tx)
+(define-namespace "BRO_NS" basic-guards.GUARD_SUCCESS basic-guards.GUARD_SUCCESS)
+(namespace "BRO_NS")
+
+(env-data {'ks-gov:["gov"], 'ks-bot:["bot"]})
+(define-keyset "BRO_NS.governance" (read-keyset 'ks-gov))
+(define-keyset "BRO_NS.bot" (read-keyset 'ks-bot))
+
+(load "../pact/bro-registry.pact")
+(create-table accounts)
+(create-table account-locked-table)
+
+(commit-tx)
+
+
+(env-data {})

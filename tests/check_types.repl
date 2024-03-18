@@ -1,0 +1,4 @@
+(load "kadena_repl_sandbox/kda-env/init.repl" true)
+(load "init.repl")
+
+(typecheck "BRO_NS.bro-registry")
