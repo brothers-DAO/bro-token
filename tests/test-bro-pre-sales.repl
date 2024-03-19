@@ -51,7 +51,7 @@
                 (buy "bob" (read-keyset 'bob-ks)))
 
 ; But alice can buy
-(env-sigs [{'key:"alice-key", 'caps:[(coin.TRANSFER "alice" SALES-INCOME-ACCOUNT 10.0)]}])
+(env-sigs [{'key:"alice-key", 'caps:[(coin.TRANSFER "alice" SALES-ACCOUNT 10.0)]}])
 (buy "alice" (read-keyset 'alice-ks))
 
 (expect "Alice has paid 10.0 KDA" 990.0 (coin.get-balance "alice"))
@@ -79,7 +79,7 @@
 
 
 ; Dave buy without reservation: Ok because we are in phase 1
-(env-sigs [{'key:"dave-key", 'caps:[(coin.TRANSFER "dave" SALES-INCOME-ACCOUNT 10.0)]}])
+(env-sigs [{'key:"dave-key", 'caps:[(coin.TRANSFER "dave" SALES-ACCOUNT 10.0)]}])
 (buy "dave" (read-keyset 'dave-ks))
 
 (expect "Dave has paid 10.0 KDA" 990.0 (coin.get-balance "dave"))
@@ -103,7 +103,7 @@
 
 ; Alice can now buy a second batch
 (env-data {'alice-ks:["alice-key"], 'bob-ks:["bob-key"]})
-(env-sigs [{'key:"alice-key", 'caps:[(coin.TRANSFER "alice" SALES-INCOME-ACCOUNT 10.0)]}])
+(env-sigs [{'key:"alice-key", 'caps:[(coin.TRANSFER "alice" SALES-ACCOUNT 10.0)]}])
 (buy "alice" (read-keyset 'alice-ks))
 
 (expect "Alice has paid 10.0 + 10.0 KDA" 980.0 (coin.get-balance "alice"))

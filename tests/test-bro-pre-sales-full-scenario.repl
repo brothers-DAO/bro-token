@@ -194,26 +194,26 @@
            'k18:["user-18-key"],
            'k19:["user-19-key"]})
 
-(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-01-key", 'caps:[(coin.TRANSFER "user-01" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-02-key", 'caps:[(coin.TRANSFER "user-02" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-03-key", 'caps:[(coin.TRANSFER "user-03" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-04-key", 'caps:[(coin.TRANSFER "user-04" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-05-key", 'caps:[(coin.TRANSFER "user-05" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-06-key", 'caps:[(coin.TRANSFER "user-06" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-07-key", 'caps:[(coin.TRANSFER "user-07" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-08-key", 'caps:[(coin.TRANSFER "user-08" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-09-key", 'caps:[(coin.TRANSFER "user-09" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-10-key", 'caps:[(coin.TRANSFER "user-10" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-11-key", 'caps:[(coin.TRANSFER "user-11" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-12-key", 'caps:[(coin.TRANSFER "user-12" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-13-key", 'caps:[(coin.TRANSFER "user-13" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-14-key", 'caps:[(coin.TRANSFER "user-14" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-15-key", 'caps:[(coin.TRANSFER "user-15" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-16-key", 'caps:[(coin.TRANSFER "user-16" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-17-key", 'caps:[(coin.TRANSFER "user-17" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-18-key", 'caps:[(coin.TRANSFER "user-18" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-19-key", 'caps:[(coin.TRANSFER "user-19" SALES-INCOME-ACCOUNT 10.0)]}
+(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-ACCOUNT 10.0)]}
+           {'key:"user-01-key", 'caps:[(coin.TRANSFER "user-01" SALES-ACCOUNT 10.0)]}
+           {'key:"user-02-key", 'caps:[(coin.TRANSFER "user-02" SALES-ACCOUNT 10.0)]}
+           {'key:"user-03-key", 'caps:[(coin.TRANSFER "user-03" SALES-ACCOUNT 10.0)]}
+           {'key:"user-04-key", 'caps:[(coin.TRANSFER "user-04" SALES-ACCOUNT 10.0)]}
+           {'key:"user-05-key", 'caps:[(coin.TRANSFER "user-05" SALES-ACCOUNT 10.0)]}
+           {'key:"user-06-key", 'caps:[(coin.TRANSFER "user-06" SALES-ACCOUNT 10.0)]}
+           {'key:"user-07-key", 'caps:[(coin.TRANSFER "user-07" SALES-ACCOUNT 10.0)]}
+           {'key:"user-08-key", 'caps:[(coin.TRANSFER "user-08" SALES-ACCOUNT 10.0)]}
+           {'key:"user-09-key", 'caps:[(coin.TRANSFER "user-09" SALES-ACCOUNT 10.0)]}
+           {'key:"user-10-key", 'caps:[(coin.TRANSFER "user-10" SALES-ACCOUNT 10.0)]}
+           {'key:"user-11-key", 'caps:[(coin.TRANSFER "user-11" SALES-ACCOUNT 10.0)]}
+           {'key:"user-12-key", 'caps:[(coin.TRANSFER "user-12" SALES-ACCOUNT 10.0)]}
+           {'key:"user-13-key", 'caps:[(coin.TRANSFER "user-13" SALES-ACCOUNT 10.0)]}
+           {'key:"user-14-key", 'caps:[(coin.TRANSFER "user-14" SALES-ACCOUNT 10.0)]}
+           {'key:"user-15-key", 'caps:[(coin.TRANSFER "user-15" SALES-ACCOUNT 10.0)]}
+           {'key:"user-16-key", 'caps:[(coin.TRANSFER "user-16" SALES-ACCOUNT 10.0)]}
+           {'key:"user-17-key", 'caps:[(coin.TRANSFER "user-17" SALES-ACCOUNT 10.0)]}
+           {'key:"user-18-key", 'caps:[(coin.TRANSFER "user-18" SALES-ACCOUNT 10.0)]}
+           {'key:"user-19-key", 'caps:[(coin.TRANSFER "user-19" SALES-ACCOUNT 10.0)]}
 ])
 
 (buy "user-00" (read-keyset 'k00))
@@ -261,16 +261,16 @@
            'k48:["user-48-key"],
            'k49:["user-49-key"]})
 
-(env-sigs [{'key:"user-40-key", 'caps:[(coin.TRANSFER "user-40" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-41-key", 'caps:[(coin.TRANSFER "user-41" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-42-key", 'caps:[(coin.TRANSFER "user-42" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-43-key", 'caps:[(coin.TRANSFER "user-43" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-44-key", 'caps:[(coin.TRANSFER "user-44" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-45-key", 'caps:[(coin.TRANSFER "user-45" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-46-key", 'caps:[(coin.TRANSFER "user-46" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-47-key", 'caps:[(coin.TRANSFER "user-47" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-48-key", 'caps:[(coin.TRANSFER "user-48" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-49-key", 'caps:[(coin.TRANSFER "user-49" SALES-INCOME-ACCOUNT 10.0)]}
+(env-sigs [{'key:"user-40-key", 'caps:[(coin.TRANSFER "user-40" SALES-ACCOUNT 10.0)]}
+           {'key:"user-41-key", 'caps:[(coin.TRANSFER "user-41" SALES-ACCOUNT 10.0)]}
+           {'key:"user-42-key", 'caps:[(coin.TRANSFER "user-42" SALES-ACCOUNT 10.0)]}
+           {'key:"user-43-key", 'caps:[(coin.TRANSFER "user-43" SALES-ACCOUNT 10.0)]}
+           {'key:"user-44-key", 'caps:[(coin.TRANSFER "user-44" SALES-ACCOUNT 10.0)]}
+           {'key:"user-45-key", 'caps:[(coin.TRANSFER "user-45" SALES-ACCOUNT 10.0)]}
+           {'key:"user-46-key", 'caps:[(coin.TRANSFER "user-46" SALES-ACCOUNT 10.0)]}
+           {'key:"user-47-key", 'caps:[(coin.TRANSFER "user-47" SALES-ACCOUNT 10.0)]}
+           {'key:"user-48-key", 'caps:[(coin.TRANSFER "user-48" SALES-ACCOUNT 10.0)]}
+           {'key:"user-49-key", 'caps:[(coin.TRANSFER "user-49" SALES-ACCOUNT 10.0)]}
 
 ])
 
@@ -293,7 +293,7 @@
 (expect "0 batches avauilable" 0 (available-for-free-sales))
 ; Next should fail
 (env-data {'k50:["user-50-key"]})
-(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-INCOME-ACCOUNT 10.0)]}])
+(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-ACCOUNT 10.0)]}])
 
 (expect-failure "Not possible to buy" "Not possible to buy"
                 (buy "user-50" (read-keyset 'k50)))
@@ -322,26 +322,26 @@
            'k38:["user-38-key"],
            'k39:["user-39-key"]})
 
-(env-sigs [{'key:"user-20-key", 'caps:[(coin.TRANSFER "user-20" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-21-key", 'caps:[(coin.TRANSFER "user-21" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-22-key", 'caps:[(coin.TRANSFER "user-22" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-23-key", 'caps:[(coin.TRANSFER "user-23" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-24-key", 'caps:[(coin.TRANSFER "user-24" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-25-key", 'caps:[(coin.TRANSFER "user-25" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-26-key", 'caps:[(coin.TRANSFER "user-26" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-27-key", 'caps:[(coin.TRANSFER "user-27" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-28-key", 'caps:[(coin.TRANSFER "user-28" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-29-key", 'caps:[(coin.TRANSFER "user-29" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-30-key", 'caps:[(coin.TRANSFER "user-30" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-31-key", 'caps:[(coin.TRANSFER "user-31" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-32-key", 'caps:[(coin.TRANSFER "user-32" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-33-key", 'caps:[(coin.TRANSFER "user-33" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-34-key", 'caps:[(coin.TRANSFER "user-34" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-35-key", 'caps:[(coin.TRANSFER "user-35" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-36-key", 'caps:[(coin.TRANSFER "user-36" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-37-key", 'caps:[(coin.TRANSFER "user-37" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-38-key", 'caps:[(coin.TRANSFER "user-38" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-39-key", 'caps:[(coin.TRANSFER "user-39" SALES-INCOME-ACCOUNT 10.0)]}
+(env-sigs [{'key:"user-20-key", 'caps:[(coin.TRANSFER "user-20" SALES-ACCOUNT 10.0)]}
+           {'key:"user-21-key", 'caps:[(coin.TRANSFER "user-21" SALES-ACCOUNT 10.0)]}
+           {'key:"user-22-key", 'caps:[(coin.TRANSFER "user-22" SALES-ACCOUNT 10.0)]}
+           {'key:"user-23-key", 'caps:[(coin.TRANSFER "user-23" SALES-ACCOUNT 10.0)]}
+           {'key:"user-24-key", 'caps:[(coin.TRANSFER "user-24" SALES-ACCOUNT 10.0)]}
+           {'key:"user-25-key", 'caps:[(coin.TRANSFER "user-25" SALES-ACCOUNT 10.0)]}
+           {'key:"user-26-key", 'caps:[(coin.TRANSFER "user-26" SALES-ACCOUNT 10.0)]}
+           {'key:"user-27-key", 'caps:[(coin.TRANSFER "user-27" SALES-ACCOUNT 10.0)]}
+           {'key:"user-28-key", 'caps:[(coin.TRANSFER "user-28" SALES-ACCOUNT 10.0)]}
+           {'key:"user-29-key", 'caps:[(coin.TRANSFER "user-29" SALES-ACCOUNT 10.0)]}
+           {'key:"user-30-key", 'caps:[(coin.TRANSFER "user-30" SALES-ACCOUNT 10.0)]}
+           {'key:"user-31-key", 'caps:[(coin.TRANSFER "user-31" SALES-ACCOUNT 10.0)]}
+           {'key:"user-32-key", 'caps:[(coin.TRANSFER "user-32" SALES-ACCOUNT 10.0)]}
+           {'key:"user-33-key", 'caps:[(coin.TRANSFER "user-33" SALES-ACCOUNT 10.0)]}
+           {'key:"user-34-key", 'caps:[(coin.TRANSFER "user-34" SALES-ACCOUNT 10.0)]}
+           {'key:"user-35-key", 'caps:[(coin.TRANSFER "user-35" SALES-ACCOUNT 10.0)]}
+           {'key:"user-36-key", 'caps:[(coin.TRANSFER "user-36" SALES-ACCOUNT 10.0)]}
+           {'key:"user-37-key", 'caps:[(coin.TRANSFER "user-37" SALES-ACCOUNT 10.0)]}
+           {'key:"user-38-key", 'caps:[(coin.TRANSFER "user-38" SALES-ACCOUNT 10.0)]}
+           {'key:"user-39-key", 'caps:[(coin.TRANSFER "user-39" SALES-ACCOUNT 10.0)]}
 ])
 
 (buy "user-20" (read-keyset 'k20))
@@ -430,56 +430,56 @@
            'k98:["user-98-key"],
            'k99:["user-99-key"]})
 
-(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-51-key", 'caps:[(coin.TRANSFER "user-51" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-52-key", 'caps:[(coin.TRANSFER "user-52" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-53-key", 'caps:[(coin.TRANSFER "user-53" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-54-key", 'caps:[(coin.TRANSFER "user-54" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-55-key", 'caps:[(coin.TRANSFER "user-55" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-56-key", 'caps:[(coin.TRANSFER "user-56" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-57-key", 'caps:[(coin.TRANSFER "user-57" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-58-key", 'caps:[(coin.TRANSFER "user-58" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-59-key", 'caps:[(coin.TRANSFER "user-59" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-60-key", 'caps:[(coin.TRANSFER "user-60" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-61-key", 'caps:[(coin.TRANSFER "user-61" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-62-key", 'caps:[(coin.TRANSFER "user-62" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-63-key", 'caps:[(coin.TRANSFER "user-63" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-64-key", 'caps:[(coin.TRANSFER "user-64" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-65-key", 'caps:[(coin.TRANSFER "user-65" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-66-key", 'caps:[(coin.TRANSFER "user-66" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-67-key", 'caps:[(coin.TRANSFER "user-67" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-68-key", 'caps:[(coin.TRANSFER "user-68" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-69-key", 'caps:[(coin.TRANSFER "user-69" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-70-key", 'caps:[(coin.TRANSFER "user-70" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-71-key", 'caps:[(coin.TRANSFER "user-71" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-72-key", 'caps:[(coin.TRANSFER "user-72" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-73-key", 'caps:[(coin.TRANSFER "user-73" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-74-key", 'caps:[(coin.TRANSFER "user-74" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-75-key", 'caps:[(coin.TRANSFER "user-75" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-76-key", 'caps:[(coin.TRANSFER "user-76" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-77-key", 'caps:[(coin.TRANSFER "user-77" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-78-key", 'caps:[(coin.TRANSFER "user-78" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-79-key", 'caps:[(coin.TRANSFER "user-79" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-80-key", 'caps:[(coin.TRANSFER "user-80" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-81-key", 'caps:[(coin.TRANSFER "user-81" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-82-key", 'caps:[(coin.TRANSFER "user-82" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-83-key", 'caps:[(coin.TRANSFER "user-83" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-84-key", 'caps:[(coin.TRANSFER "user-84" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-85-key", 'caps:[(coin.TRANSFER "user-85" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-86-key", 'caps:[(coin.TRANSFER "user-86" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-87-key", 'caps:[(coin.TRANSFER "user-87" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-88-key", 'caps:[(coin.TRANSFER "user-88" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-89-key", 'caps:[(coin.TRANSFER "user-89" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-90-key", 'caps:[(coin.TRANSFER "user-90" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-91-key", 'caps:[(coin.TRANSFER "user-91" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-92-key", 'caps:[(coin.TRANSFER "user-92" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-93-key", 'caps:[(coin.TRANSFER "user-93" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-94-key", 'caps:[(coin.TRANSFER "user-94" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-95-key", 'caps:[(coin.TRANSFER "user-95" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-96-key", 'caps:[(coin.TRANSFER "user-96" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-97-key", 'caps:[(coin.TRANSFER "user-97" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-98-key", 'caps:[(coin.TRANSFER "user-98" SALES-INCOME-ACCOUNT 10.0)]}
-           {'key:"user-99-key", 'caps:[(coin.TRANSFER "user-99" SALES-INCOME-ACCOUNT 10.0)]}
+(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-ACCOUNT 10.0)]}
+           {'key:"user-51-key", 'caps:[(coin.TRANSFER "user-51" SALES-ACCOUNT 10.0)]}
+           {'key:"user-52-key", 'caps:[(coin.TRANSFER "user-52" SALES-ACCOUNT 10.0)]}
+           {'key:"user-53-key", 'caps:[(coin.TRANSFER "user-53" SALES-ACCOUNT 10.0)]}
+           {'key:"user-54-key", 'caps:[(coin.TRANSFER "user-54" SALES-ACCOUNT 10.0)]}
+           {'key:"user-55-key", 'caps:[(coin.TRANSFER "user-55" SALES-ACCOUNT 10.0)]}
+           {'key:"user-56-key", 'caps:[(coin.TRANSFER "user-56" SALES-ACCOUNT 10.0)]}
+           {'key:"user-57-key", 'caps:[(coin.TRANSFER "user-57" SALES-ACCOUNT 10.0)]}
+           {'key:"user-58-key", 'caps:[(coin.TRANSFER "user-58" SALES-ACCOUNT 10.0)]}
+           {'key:"user-59-key", 'caps:[(coin.TRANSFER "user-59" SALES-ACCOUNT 10.0)]}
+           {'key:"user-60-key", 'caps:[(coin.TRANSFER "user-60" SALES-ACCOUNT 10.0)]}
+           {'key:"user-61-key", 'caps:[(coin.TRANSFER "user-61" SALES-ACCOUNT 10.0)]}
+           {'key:"user-62-key", 'caps:[(coin.TRANSFER "user-62" SALES-ACCOUNT 10.0)]}
+           {'key:"user-63-key", 'caps:[(coin.TRANSFER "user-63" SALES-ACCOUNT 10.0)]}
+           {'key:"user-64-key", 'caps:[(coin.TRANSFER "user-64" SALES-ACCOUNT 10.0)]}
+           {'key:"user-65-key", 'caps:[(coin.TRANSFER "user-65" SALES-ACCOUNT 10.0)]}
+           {'key:"user-66-key", 'caps:[(coin.TRANSFER "user-66" SALES-ACCOUNT 10.0)]}
+           {'key:"user-67-key", 'caps:[(coin.TRANSFER "user-67" SALES-ACCOUNT 10.0)]}
+           {'key:"user-68-key", 'caps:[(coin.TRANSFER "user-68" SALES-ACCOUNT 10.0)]}
+           {'key:"user-69-key", 'caps:[(coin.TRANSFER "user-69" SALES-ACCOUNT 10.0)]}
+           {'key:"user-70-key", 'caps:[(coin.TRANSFER "user-70" SALES-ACCOUNT 10.0)]}
+           {'key:"user-71-key", 'caps:[(coin.TRANSFER "user-71" SALES-ACCOUNT 10.0)]}
+           {'key:"user-72-key", 'caps:[(coin.TRANSFER "user-72" SALES-ACCOUNT 10.0)]}
+           {'key:"user-73-key", 'caps:[(coin.TRANSFER "user-73" SALES-ACCOUNT 10.0)]}
+           {'key:"user-74-key", 'caps:[(coin.TRANSFER "user-74" SALES-ACCOUNT 10.0)]}
+           {'key:"user-75-key", 'caps:[(coin.TRANSFER "user-75" SALES-ACCOUNT 10.0)]}
+           {'key:"user-76-key", 'caps:[(coin.TRANSFER "user-76" SALES-ACCOUNT 10.0)]}
+           {'key:"user-77-key", 'caps:[(coin.TRANSFER "user-77" SALES-ACCOUNT 10.0)]}
+           {'key:"user-78-key", 'caps:[(coin.TRANSFER "user-78" SALES-ACCOUNT 10.0)]}
+           {'key:"user-79-key", 'caps:[(coin.TRANSFER "user-79" SALES-ACCOUNT 10.0)]}
+           {'key:"user-80-key", 'caps:[(coin.TRANSFER "user-80" SALES-ACCOUNT 10.0)]}
+           {'key:"user-81-key", 'caps:[(coin.TRANSFER "user-81" SALES-ACCOUNT 10.0)]}
+           {'key:"user-82-key", 'caps:[(coin.TRANSFER "user-82" SALES-ACCOUNT 10.0)]}
+           {'key:"user-83-key", 'caps:[(coin.TRANSFER "user-83" SALES-ACCOUNT 10.0)]}
+           {'key:"user-84-key", 'caps:[(coin.TRANSFER "user-84" SALES-ACCOUNT 10.0)]}
+           {'key:"user-85-key", 'caps:[(coin.TRANSFER "user-85" SALES-ACCOUNT 10.0)]}
+           {'key:"user-86-key", 'caps:[(coin.TRANSFER "user-86" SALES-ACCOUNT 10.0)]}
+           {'key:"user-87-key", 'caps:[(coin.TRANSFER "user-87" SALES-ACCOUNT 10.0)]}
+           {'key:"user-88-key", 'caps:[(coin.TRANSFER "user-88" SALES-ACCOUNT 10.0)]}
+           {'key:"user-89-key", 'caps:[(coin.TRANSFER "user-89" SALES-ACCOUNT 10.0)]}
+           {'key:"user-90-key", 'caps:[(coin.TRANSFER "user-90" SALES-ACCOUNT 10.0)]}
+           {'key:"user-91-key", 'caps:[(coin.TRANSFER "user-91" SALES-ACCOUNT 10.0)]}
+           {'key:"user-92-key", 'caps:[(coin.TRANSFER "user-92" SALES-ACCOUNT 10.0)]}
+           {'key:"user-93-key", 'caps:[(coin.TRANSFER "user-93" SALES-ACCOUNT 10.0)]}
+           {'key:"user-94-key", 'caps:[(coin.TRANSFER "user-94" SALES-ACCOUNT 10.0)]}
+           {'key:"user-95-key", 'caps:[(coin.TRANSFER "user-95" SALES-ACCOUNT 10.0)]}
+           {'key:"user-96-key", 'caps:[(coin.TRANSFER "user-96" SALES-ACCOUNT 10.0)]}
+           {'key:"user-97-key", 'caps:[(coin.TRANSFER "user-97" SALES-ACCOUNT 10.0)]}
+           {'key:"user-98-key", 'caps:[(coin.TRANSFER "user-98" SALES-ACCOUNT 10.0)]}
+           {'key:"user-99-key", 'caps:[(coin.TRANSFER "user-99" SALES-ACCOUNT 10.0)]}
 ])
 
 (buy "user-50" (read-keyset 'k50))
@@ -538,7 +538,7 @@
 
 ; Next should fail
 (env-data {'k00:["user-00-key"]})
-(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-INCOME-ACCOUNT 10.0)]}])
+(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-ACCOUNT 10.0)]}])
 
 (expect-failure "Not possible to buy" "Not possible to buy"
                 (buy "user-00" (read-keyset 'k00)))

@@ -20,7 +20,7 @@
 
 (env-data {'treasury-g:["treasury-key"], 'liquidity-g:["liquidity-key"]})
 (load "../pact/bro-pre-sales.pact")
-(create-table global-table)
+(create-table global-counters)
 (create-table accounts-table)
 (init)
 

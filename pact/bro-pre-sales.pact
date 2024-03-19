@@ -39,13 +39,13 @@
   ;-----------------------------------------------------------------------------
   ; Dates functions to pre-sales phases
   ;-----------------------------------------------------------------------------
-  (defun in-phase-1:bool ()
+  (defun in-phase-0:bool ()
     (and (is-past PHASE-0-START) (is-future PHASE-1-START)))
 
-  (defun in-phase-2:bool ()
+  (defun in-phase-1:bool ()
     (and (is-past PHASE-1-START) (is-future PHASE-2-START)))
 
-  (defun in-phase-3:bool ()
+  (defun in-phase-2:bool ()
     (and (is-past PHASE-2-START) (is-future END-OF-PRESALES)))
 
   (defun ended:bool ()
@@ -54,12 +54,12 @@
   ;-----------------------------------------------------------------------------
   ; Schemas and Tables
   ;-----------------------------------------------------------------------------
-  (defschema presale-global-sch
+  (defschema counters-sch
     sold:integer
     reserved:integer
   )
 
-  (deftable global-table:{presale-global-sch})
+  (deftable global-counters:{counters-sch})
 
   (defschema presale-account-sch
     account:string
@@ -75,9 +75,9 @@
   ;-----------------------------------------------------------------------------
   (defcap SALES-INCOME () true)
 
-  (defconst SALES-INCOME-GUARD (create-capability-guard (SALES-INCOME)))
+  (defconst SALES-GUARD (create-capability-guard (SALES-INCOME)))
 
-  (defconst SALES-INCOME-ACCOUNT (create-principal SALES-INCOME-GUARD))
+  (defconst SALES-ACCOUNT (create-principal SALES-GUARD))
 
   (defcap BRO-RESERVE () true)
 
@@ -102,16 +102,16 @@
 
   (defun enforce-available-for-reservation:bool ()
     @doc "Verify that new accounts can reserve"
-    (with-read global-table "" {'sold:=sold, 'reserved:=reserved}
+    (with-read global-counters "" {'sold:=sold, 'reserved:=reserved}
       (enforce (< (+ sold reserved) 100) "No tokens are available for reservation"))
   )
 
   (defun available-for-free-sales:integer ()
     @doc "Returns the number of batches still available for sale"
-    (with-read global-table "" {'sold:=sold, 'reserved:=reserved}
+    (with-read global-counters "" {'sold:=sold, 'reserved:=reserved}
       (cond
-        ((in-phase-2) (-safe 50 (+ sold reserved)))
-        ((in-phase-3) (-safe 100 sold))
+        ((in-phase-1) (-safe 50 (+ sold reserved)))
+        ((in-phase-2) (-safe 100 sold))
         0))
   )
 
@@ -123,7 +123,7 @@
 
   (defun has-reservation:bool (account:string)
     @doc "Verify that the account has reserved a batch"
-    (and (or (in-phase-1) (in-phase-2))
+    (and (or (in-phase-0) (in-phase-1))
          (with-default-read accounts-table account {'reserved:0, 'bought:0} {'reserved:=reserved, 'bought:=bought}
             (and (= 0 bought) (= 1 reserved))))
   )
@@ -145,7 +145,7 @@
   ;-----------------------------------------------------------------------------
   (defun reserve-batch:string (account:string)
     @doc "Reserve a batch for a given account"
-    (enforce (or (in-phase-1) (in-phase-2)) "Reservation can only be done in Phase 1 or 2")
+    (enforce (or (in-phase-0) (in-phase-1)) "Reservation can only be done in Phase 1 or 2")
     (enforce-available-for-reservation)
 
     ; Check that this is the first reservation for this account
@@ -154,8 +154,8 @@
 
     (with-capability (SALES-OPERATOR)
       ; Increment the reservation count
-      (with-read global-table "" {'reserved:=x}
-        (update global-table "" {'reserved: (++ x)}))
+      (with-read global-counters "" {'reserved:=x}
+        (update global-counters "" {'reserved: (++ x)}))
       ; And update the account
       (write accounts-table account {'account:account,
                                      'reserved:1,
@@ -178,14 +178,14 @@
 
     (with-default-read accounts-table account {'bought:0, 'reserved:0} {'bought:=bought, 'reserved:=reserved}
       ; Check that in phase 2, account has never bought before
-      (enforce (or (in-phase-3) (= 0 bought)) "Multiple purchase are only possible in phase 3")
+      (enforce (or (in-phase-2) (= 0 bought)) "Multiple purchase are only possible in phase 3")
       ; Increment the bought and optionnaly cancel reservation
       (write accounts-table account {'account:account,
                                      'bought:(++ bought),
                                      'reserved:0})
       ; Increment the global counters
-      (with-read global-table "" {'sold:=sold, 'reserved:=global-reserved}
-        (update global-table "" {'sold: (++ sold),
+      (with-read global-counters "" {'sold:=sold, 'reserved:=global-reserved}
+        (update global-counters "" {'sold: (++ sold),
                                  'reserved: (- global-reserved reserved)})))
 
     ; Create the BRO account if it doesn't exist
@@ -194,7 +194,7 @@
         "")
 
     ; Transfer KDAs
-    (coin.transfer-create account SALES-INCOME-ACCOUNT SALES-INCOME-GUARD PRICE-PER-BATCH)
+    (coin.transfer-create account SALES-ACCOUNT SALES-GUARD PRICE-PER-BATCH)
   )
 
 
@@ -212,7 +212,7 @@
                         (bro.transfer BRO-RESERVE-ACCOUNT account (to-bro-amount batches))))
              (get-sales)))
 
-      (with-read global-table "" {'sold:=sold}
+      (with-read global-counters "" {'sold:=sold}
         ; Transfer remaining to treasury (if not all sold)
         (if (< sold 100)
             (with-capability (BRO-RESERVE)
@@ -222,15 +222,15 @@
 
       ; Transfer the income (in KDA) to treasury (for DEX liquidity)
       (with-capability (SALES-INCOME)
-        (install-capability (coin.TRANSFER SALES-INCOME-ACCOUNT LIQUIDITY-ACCOUNT (to-kda-amount sold)))
-        (coin.transfer-create SALES-INCOME-ACCOUNT LIQUIDITY-ACCOUNT LIQUIDITY-GUARD (to-kda-amount sold))))
+        (install-capability (coin.TRANSFER SALES-ACCOUNT LIQUIDITY-ACCOUNT (to-kda-amount sold)))
+        (coin.transfer-create SALES-ACCOUNT LIQUIDITY-ACCOUNT LIQUIDITY-GUARD (to-kda-amount sold))))
       "Pre-sales ended")
   )
 
 
   (defun init:string ()
     (with-capability (GOVERNANCE)
-      (insert global-table "" {'sold:0, 'reserved:0}))
+      (insert global-counters "" {'sold:0, 'reserved:0}))
     "Sales counters initialized"
   )
 
@@ -239,12 +239,12 @@
   ;-----------------------------------------------------------------------------
   (defun get-counters ()
     @doc "Returns the counters: sold and reserved"
-    (read global-table "")
+    (read global-counters "")
   )
 
   (defun get-reservations:[object{presale-account-sch}] ()
     @doc "Returns the list of reservations"
-    (if (or (in-phase-1) (in-phase-2))
+    (if (or (in-phase-0) (in-phase-1))
         (select accounts-table (where 'reserved (< 0)))
         [])
   )
