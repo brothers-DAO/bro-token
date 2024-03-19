@@ -119,7 +119,7 @@
   ;-----------------------------------------------------------------------------
   (defun list-accounts:list ()
     @doc "Returns the list of accounts registered in the system"
-    (fold-db accounts (lambda (k obj) (where 'enabled (= true) obj))
-                      (lambda (k obj) {'tg-account-enc:k, 'bro-account:(at 'bro-account obj)}))
+    (fold-db accounts (lambda (k:string obj) (where 'enabled (= true) obj))
+                      (lambda (k:string obj) {'tg-account-enc:k, 'bro-account:(at 'bro-account obj)}))
   )
 )
