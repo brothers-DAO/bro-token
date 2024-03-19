@@ -2,3 +2,5 @@
 (load "init.repl")
 
 (typecheck "BRO_NS.bro-registry")
+(typecheck "BRO_NS.bro")
+(typecheck "BRO_NS.bro-pre-sales")

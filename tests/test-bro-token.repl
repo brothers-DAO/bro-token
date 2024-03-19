@@ -1,0 +1,42 @@
+(load "kadena_repl_sandbox/kda-env/init.repl")
+(load "init.repl")
+
+
+(begin-tx)
+(use BRO_NS.bro)
+(env-sigs [{'key:"gov", 'caps:[(INIT)]}])
+
+(env-data {'ks-ps:["pres-sales-key"], 'ks-tr:["treasury-key"], 'ks-liqu:["liquidity-key"] })
+
+; Try on bad chain
+(env-chain-data {"chain-id":"13"})
+
+(expect-failure "Bad chain" "initial chain"
+                (init "pre-sales" (read-keyset 'ks-ps)
+                      "treasury"  (read-keyset 'ks-tr)
+                      "liquidity" (read-keyset 'ks-liqu)))
+
+; On good chain
+(env-chain-data {"chain-id":"2"})
+(init "pre-sales" (read-keyset 'ks-ps)
+      "treasury"  (read-keyset 'ks-tr)
+      "liquidity" (read-keyset 'ks-liqu))
+
+; A second time
+(expect-failure "Init only once" "Already intialized"
+                (init "pre-sales" (read-keyset 'ks-ps)
+                      "treasury"  (read-keyset 'ks-tr)
+                      "liquidity" (read-keyset 'ks-liqu)))
+
+
+
+
+(expect "Balance of pre-sales" 40.0 (get-balance "pre-sales"))
+(expect "Balance of treasury" 20.0 (get-balance "treasury"))
+(expect "Balance of liquidity" 40.0 (get-balance "liquidity"))
+
+(expect-that "KS of pre-sales" (compose (at 'guard) (= (read-keyset 'ks-ps))) (details "pre-sales"))
+(expect-that "KS of treasury" (compose (at 'guard) (= (read-keyset 'ks-tr))) (details "treasury"))
+(expect-that "KS of liquidity" (compose (at 'guard) (= (read-keyset 'ks-liqu))) (details "liquidity"))
+
+(commit-tx)

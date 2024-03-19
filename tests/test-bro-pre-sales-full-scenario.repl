@@ -1,0 +1,562 @@
+(load "kadena_repl_sandbox/kda-env/init.repl")
+(load "init.repl")
+
+;;; This file test a full scenarios where all batch are being bought
+
+; Init Bro
+(begin-tx)
+(use BRO_NS.bro)
+(env-sigs [{'key:"gov", 'caps:[(INIT)]}])
+
+(env-data {'ks-ps:["pres-sales-key"], 'ks-tr:["treasury-key"], 'ks-liqu:["liquidity-key"] })
+
+(env-chain-data {"chain-id":"2"})
+(init BRO_NS.bro-pre-sales.BRO-RESERVE-ACCOUNT  BRO_NS.bro-pre-sales.BRO-RESERVE-GUARD
+      "treasury"  (read-keyset 'ks-tr)
+      "liquidity" (read-keyset 'ks-liqu))
+(commit-tx)
+
+; Create many accounts
+(env-enable-repl-natives true)
+(begin-tx)
+(repl-coin-tools.fund-account "user-00" "user-00-key" 10.0)
+(repl-coin-tools.fund-account "user-01" "user-01-key" 10.0)
+(repl-coin-tools.fund-account "user-02" "user-02-key" 10.0)
+(repl-coin-tools.fund-account "user-03" "user-03-key" 10.0)
+(repl-coin-tools.fund-account "user-04" "user-04-key" 10.0)
+(repl-coin-tools.fund-account "user-05" "user-05-key" 10.0)
+(repl-coin-tools.fund-account "user-06" "user-06-key" 10.0)
+(repl-coin-tools.fund-account "user-07" "user-07-key" 10.0)
+(repl-coin-tools.fund-account "user-08" "user-08-key" 10.0)
+(repl-coin-tools.fund-account "user-09" "user-09-key" 10.0)
+(repl-coin-tools.fund-account "user-10" "user-10-key" 10.0)
+(repl-coin-tools.fund-account "user-11" "user-11-key" 10.0)
+(repl-coin-tools.fund-account "user-12" "user-12-key" 10.0)
+(repl-coin-tools.fund-account "user-13" "user-13-key" 10.0)
+(repl-coin-tools.fund-account "user-14" "user-14-key" 10.0)
+(repl-coin-tools.fund-account "user-15" "user-15-key" 10.0)
+(repl-coin-tools.fund-account "user-16" "user-16-key" 10.0)
+(repl-coin-tools.fund-account "user-17" "user-17-key" 10.0)
+(repl-coin-tools.fund-account "user-18" "user-18-key" 10.0)
+(repl-coin-tools.fund-account "user-19" "user-19-key" 10.0)
+(repl-coin-tools.fund-account "user-20" "user-20-key" 10.0)
+(repl-coin-tools.fund-account "user-21" "user-21-key" 10.0)
+(repl-coin-tools.fund-account "user-22" "user-22-key" 10.0)
+(repl-coin-tools.fund-account "user-23" "user-23-key" 10.0)
+(repl-coin-tools.fund-account "user-24" "user-24-key" 10.0)
+(repl-coin-tools.fund-account "user-25" "user-25-key" 10.0)
+(repl-coin-tools.fund-account "user-26" "user-26-key" 10.0)
+(repl-coin-tools.fund-account "user-27" "user-27-key" 10.0)
+(repl-coin-tools.fund-account "user-28" "user-28-key" 10.0)
+(repl-coin-tools.fund-account "user-29" "user-29-key" 10.0)
+(repl-coin-tools.fund-account "user-30" "user-30-key" 10.0)
+(repl-coin-tools.fund-account "user-31" "user-31-key" 10.0)
+(repl-coin-tools.fund-account "user-32" "user-32-key" 10.0)
+(repl-coin-tools.fund-account "user-33" "user-33-key" 10.0)
+(repl-coin-tools.fund-account "user-34" "user-34-key" 10.0)
+(repl-coin-tools.fund-account "user-35" "user-35-key" 10.0)
+(repl-coin-tools.fund-account "user-36" "user-36-key" 10.0)
+(repl-coin-tools.fund-account "user-37" "user-37-key" 10.0)
+(repl-coin-tools.fund-account "user-38" "user-38-key" 10.0)
+(repl-coin-tools.fund-account "user-39" "user-39-key" 10.0)
+(repl-coin-tools.fund-account "user-40" "user-40-key" 10.0)
+(repl-coin-tools.fund-account "user-41" "user-41-key" 10.0)
+(repl-coin-tools.fund-account "user-42" "user-42-key" 10.0)
+(repl-coin-tools.fund-account "user-43" "user-43-key" 10.0)
+(repl-coin-tools.fund-account "user-44" "user-44-key" 10.0)
+(repl-coin-tools.fund-account "user-45" "user-45-key" 10.0)
+(repl-coin-tools.fund-account "user-46" "user-46-key" 10.0)
+(repl-coin-tools.fund-account "user-47" "user-47-key" 10.0)
+(repl-coin-tools.fund-account "user-48" "user-48-key" 10.0)
+(repl-coin-tools.fund-account "user-49" "user-49-key" 10.0)
+(repl-coin-tools.fund-account "user-50" "user-50-key" 10.0)
+(repl-coin-tools.fund-account "user-51" "user-51-key" 10.0)
+(repl-coin-tools.fund-account "user-52" "user-52-key" 10.0)
+(repl-coin-tools.fund-account "user-53" "user-53-key" 10.0)
+(repl-coin-tools.fund-account "user-54" "user-54-key" 10.0)
+(repl-coin-tools.fund-account "user-55" "user-55-key" 10.0)
+(repl-coin-tools.fund-account "user-56" "user-56-key" 10.0)
+(repl-coin-tools.fund-account "user-57" "user-57-key" 10.0)
+(repl-coin-tools.fund-account "user-58" "user-58-key" 10.0)
+(repl-coin-tools.fund-account "user-59" "user-59-key" 10.0)
+(repl-coin-tools.fund-account "user-60" "user-60-key" 10.0)
+(repl-coin-tools.fund-account "user-61" "user-61-key" 10.0)
+(repl-coin-tools.fund-account "user-62" "user-62-key" 10.0)
+(repl-coin-tools.fund-account "user-63" "user-63-key" 10.0)
+(repl-coin-tools.fund-account "user-64" "user-64-key" 10.0)
+(repl-coin-tools.fund-account "user-65" "user-65-key" 10.0)
+(repl-coin-tools.fund-account "user-66" "user-66-key" 10.0)
+(repl-coin-tools.fund-account "user-67" "user-67-key" 10.0)
+(repl-coin-tools.fund-account "user-68" "user-68-key" 10.0)
+(repl-coin-tools.fund-account "user-69" "user-69-key" 10.0)
+(repl-coin-tools.fund-account "user-70" "user-70-key" 10.0)
+(repl-coin-tools.fund-account "user-71" "user-71-key" 10.0)
+(repl-coin-tools.fund-account "user-72" "user-72-key" 10.0)
+(repl-coin-tools.fund-account "user-73" "user-73-key" 10.0)
+(repl-coin-tools.fund-account "user-74" "user-74-key" 10.0)
+(repl-coin-tools.fund-account "user-75" "user-75-key" 10.0)
+(repl-coin-tools.fund-account "user-76" "user-76-key" 10.0)
+(repl-coin-tools.fund-account "user-77" "user-77-key" 10.0)
+(repl-coin-tools.fund-account "user-78" "user-78-key" 10.0)
+(repl-coin-tools.fund-account "user-79" "user-79-key" 10.0)
+(repl-coin-tools.fund-account "user-80" "user-80-key" 10.0)
+(repl-coin-tools.fund-account "user-81" "user-81-key" 10.0)
+(repl-coin-tools.fund-account "user-82" "user-82-key" 10.0)
+(repl-coin-tools.fund-account "user-83" "user-83-key" 10.0)
+(repl-coin-tools.fund-account "user-84" "user-84-key" 10.0)
+(repl-coin-tools.fund-account "user-85" "user-85-key" 10.0)
+(repl-coin-tools.fund-account "user-86" "user-86-key" 10.0)
+(repl-coin-tools.fund-account "user-87" "user-87-key" 10.0)
+(repl-coin-tools.fund-account "user-88" "user-88-key" 10.0)
+(repl-coin-tools.fund-account "user-89" "user-89-key" 10.0)
+(repl-coin-tools.fund-account "user-90" "user-90-key" 10.0)
+(repl-coin-tools.fund-account "user-91" "user-91-key" 10.0)
+(repl-coin-tools.fund-account "user-92" "user-92-key" 10.0)
+(repl-coin-tools.fund-account "user-93" "user-93-key" 10.0)
+(repl-coin-tools.fund-account "user-94" "user-94-key" 10.0)
+(repl-coin-tools.fund-account "user-95" "user-95-key" 10.0)
+(repl-coin-tools.fund-account "user-96" "user-96-key" 10.0)
+(repl-coin-tools.fund-account "user-97" "user-97-key" 10.0)
+(repl-coin-tools.fund-account "user-98" "user-98-key" 10.0)
+(repl-coin-tools.fund-account "user-99" "user-99-key" 10.0)
+
+(commit-tx)
+(env-enable-repl-natives false)
+
+; Sales Phase 0
+(begin-tx)
+(use BRO_NS.bro-pre-sales)
+(env-chain-data {'block-time:(time "2024-04-02T00:00:00Z")})
+
+(env-sigs [{'key:"sales", 'caps:[(SALES-OPERATOR)]}])
+
+;;; =====> RESERVE 40 BATCH
+(reserve-batch "user-00")
+(reserve-batch "user-01")
+(reserve-batch "user-02")
+(reserve-batch "user-03")
+(reserve-batch "user-04")
+(reserve-batch "user-05")
+(reserve-batch "user-06")
+(reserve-batch "user-07")
+(reserve-batch "user-08")
+(reserve-batch "user-09")
+(reserve-batch "user-10")
+(reserve-batch "user-11")
+(reserve-batch "user-12")
+(reserve-batch "user-13")
+(reserve-batch "user-14")
+(reserve-batch "user-15")
+(reserve-batch "user-16")
+(reserve-batch "user-17")
+(reserve-batch "user-18")
+(reserve-batch "user-19")
+(reserve-batch "user-20")
+(reserve-batch "user-21")
+(reserve-batch "user-22")
+(reserve-batch "user-23")
+(reserve-batch "user-24")
+(reserve-batch "user-25")
+(reserve-batch "user-26")
+(reserve-batch "user-27")
+(reserve-batch "user-28")
+(reserve-batch "user-29")
+(reserve-batch "user-30")
+(reserve-batch "user-31")
+(reserve-batch "user-32")
+(reserve-batch "user-33")
+(reserve-batch "user-34")
+(reserve-batch "user-35")
+(reserve-batch "user-36")
+(reserve-batch "user-37")
+(reserve-batch "user-38")
+(reserve-batch "user-39")
+
+;;; =====> BUY 20 BATCH
+(env-data {'k00:["user-00-key"],
+           'k01:["user-01-key"],
+           'k02:["user-02-key"],
+           'k03:["user-03-key"],
+           'k04:["user-04-key"],
+           'k05:["user-05-key"],
+           'k06:["user-06-key"],
+           'k07:["user-07-key"],
+           'k08:["user-08-key"],
+           'k09:["user-09-key"],
+           'k10:["user-10-key"],
+           'k11:["user-11-key"],
+           'k12:["user-12-key"],
+           'k13:["user-13-key"],
+           'k14:["user-14-key"],
+           'k15:["user-15-key"],
+           'k16:["user-16-key"],
+           'k17:["user-17-key"],
+           'k18:["user-18-key"],
+           'k19:["user-19-key"]})
+
+(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-01-key", 'caps:[(coin.TRANSFER "user-01" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-02-key", 'caps:[(coin.TRANSFER "user-02" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-03-key", 'caps:[(coin.TRANSFER "user-03" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-04-key", 'caps:[(coin.TRANSFER "user-04" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-05-key", 'caps:[(coin.TRANSFER "user-05" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-06-key", 'caps:[(coin.TRANSFER "user-06" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-07-key", 'caps:[(coin.TRANSFER "user-07" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-08-key", 'caps:[(coin.TRANSFER "user-08" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-09-key", 'caps:[(coin.TRANSFER "user-09" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-10-key", 'caps:[(coin.TRANSFER "user-10" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-11-key", 'caps:[(coin.TRANSFER "user-11" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-12-key", 'caps:[(coin.TRANSFER "user-12" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-13-key", 'caps:[(coin.TRANSFER "user-13" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-14-key", 'caps:[(coin.TRANSFER "user-14" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-15-key", 'caps:[(coin.TRANSFER "user-15" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-16-key", 'caps:[(coin.TRANSFER "user-16" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-17-key", 'caps:[(coin.TRANSFER "user-17" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-18-key", 'caps:[(coin.TRANSFER "user-18" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-19-key", 'caps:[(coin.TRANSFER "user-19" SALES-INCOME-ACCOUNT 10.0)]}
+])
+
+(buy "user-00" (read-keyset 'k00))
+(buy "user-01" (read-keyset 'k01))
+(buy "user-02" (read-keyset 'k02))
+(buy "user-03" (read-keyset 'k03))
+(buy "user-04" (read-keyset 'k04))
+(buy "user-05" (read-keyset 'k05))
+(buy "user-06" (read-keyset 'k06))
+(buy "user-07" (read-keyset 'k07))
+(buy "user-08" (read-keyset 'k08))
+(buy "user-09" (read-keyset 'k09))
+(buy "user-10" (read-keyset 'k10))
+(buy "user-11" (read-keyset 'k11))
+(buy "user-12" (read-keyset 'k12))
+(buy "user-13" (read-keyset 'k13))
+(buy "user-14" (read-keyset 'k14))
+(buy "user-15" (read-keyset 'k15))
+(buy "user-16" (read-keyset 'k16))
+(buy "user-17" (read-keyset 'k17))
+(buy "user-18" (read-keyset 'k18))
+(buy "user-19" (read-keyset 'k19))
+
+(commit-tx)
+
+;------------------------------------------------------------------------------*
+; Sales Phase 1
+(begin-tx)
+(use BRO_NS.bro-pre-sales)
+(env-chain-data {'block-time:(time "2024-04-09T00:00:00Z")})
+
+; We should have still 10 available sales
+(expect "10 batches avauilable" 10 (available-for-free-sales))
+
+;;; =====> BUY 30 NON-RESEVERD BATCH
+
+(env-data {'k40:["user-40-key"],
+           'k41:["user-41-key"],
+           'k42:["user-42-key"],
+           'k43:["user-43-key"],
+           'k44:["user-44-key"],
+           'k45:["user-45-key"],
+           'k46:["user-46-key"],
+           'k47:["user-47-key"],
+           'k48:["user-48-key"],
+           'k49:["user-49-key"]})
+
+(env-sigs [{'key:"user-40-key", 'caps:[(coin.TRANSFER "user-40" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-41-key", 'caps:[(coin.TRANSFER "user-41" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-42-key", 'caps:[(coin.TRANSFER "user-42" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-43-key", 'caps:[(coin.TRANSFER "user-43" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-44-key", 'caps:[(coin.TRANSFER "user-44" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-45-key", 'caps:[(coin.TRANSFER "user-45" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-46-key", 'caps:[(coin.TRANSFER "user-46" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-47-key", 'caps:[(coin.TRANSFER "user-47" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-48-key", 'caps:[(coin.TRANSFER "user-48" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-49-key", 'caps:[(coin.TRANSFER "user-49" SALES-INCOME-ACCOUNT 10.0)]}
+
+])
+
+(buy "user-40" (read-keyset 'k40))
+(buy "user-41" (read-keyset 'k41))
+(buy "user-42" (read-keyset 'k42))
+(buy "user-43" (read-keyset 'k43))
+(buy "user-44" (read-keyset 'k44))
+(buy "user-45" (read-keyset 'k45))
+(buy "user-46" (read-keyset 'k46))
+(buy "user-47" (read-keyset 'k47))
+(buy "user-48" (read-keyset 'k48))
+(buy "user-49" (read-keyset 'k49))
+
+
+; Now we should have 0 available:
+;  - 20 Reserved + Bought during phase 0
+;  - 20 Reserved during phase 0
+;  - 10 Bought during phase 1
+(expect "0 batches avauilable" 0 (available-for-free-sales))
+; Next should fail
+(env-data {'k50:["user-50-key"]})
+(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-INCOME-ACCOUNT 10.0)]}])
+
+(expect-failure "Not possible to buy" "Not possible to buy"
+                (buy "user-50" (read-keyset 'k50)))
+
+
+; Now the 20 last reserved during phase 1 can buy
+;;; =====> BUY 20 BATCH
+(env-data {'k20:["user-20-key"],
+           'k21:["user-21-key"],
+           'k22:["user-22-key"],
+           'k23:["user-23-key"],
+           'k24:["user-24-key"],
+           'k25:["user-25-key"],
+           'k26:["user-26-key"],
+           'k27:["user-27-key"],
+           'k28:["user-28-key"],
+           'k29:["user-29-key"],
+           'k30:["user-30-key"],
+           'k31:["user-31-key"],
+           'k32:["user-32-key"],
+           'k33:["user-33-key"],
+           'k34:["user-34-key"],
+           'k35:["user-35-key"],
+           'k36:["user-36-key"],
+           'k37:["user-37-key"],
+           'k38:["user-38-key"],
+           'k39:["user-39-key"]})
+
+(env-sigs [{'key:"user-20-key", 'caps:[(coin.TRANSFER "user-20" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-21-key", 'caps:[(coin.TRANSFER "user-21" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-22-key", 'caps:[(coin.TRANSFER "user-22" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-23-key", 'caps:[(coin.TRANSFER "user-23" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-24-key", 'caps:[(coin.TRANSFER "user-24" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-25-key", 'caps:[(coin.TRANSFER "user-25" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-26-key", 'caps:[(coin.TRANSFER "user-26" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-27-key", 'caps:[(coin.TRANSFER "user-27" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-28-key", 'caps:[(coin.TRANSFER "user-28" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-29-key", 'caps:[(coin.TRANSFER "user-29" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-30-key", 'caps:[(coin.TRANSFER "user-30" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-31-key", 'caps:[(coin.TRANSFER "user-31" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-32-key", 'caps:[(coin.TRANSFER "user-32" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-33-key", 'caps:[(coin.TRANSFER "user-33" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-34-key", 'caps:[(coin.TRANSFER "user-34" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-35-key", 'caps:[(coin.TRANSFER "user-35" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-36-key", 'caps:[(coin.TRANSFER "user-36" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-37-key", 'caps:[(coin.TRANSFER "user-37" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-38-key", 'caps:[(coin.TRANSFER "user-38" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-39-key", 'caps:[(coin.TRANSFER "user-39" SALES-INCOME-ACCOUNT 10.0)]}
+])
+
+(buy "user-20" (read-keyset 'k20))
+(buy "user-21" (read-keyset 'k21))
+(buy "user-22" (read-keyset 'k22))
+(buy "user-23" (read-keyset 'k23))
+(buy "user-24" (read-keyset 'k24))
+(buy "user-25" (read-keyset 'k25))
+(buy "user-26" (read-keyset 'k26))
+(buy "user-27" (read-keyset 'k27))
+(buy "user-28" (read-keyset 'k28))
+(buy "user-29" (read-keyset 'k29))
+(buy "user-30" (read-keyset 'k30))
+(buy "user-31" (read-keyset 'k31))
+(buy "user-32" (read-keyset 'k32))
+(buy "user-33" (read-keyset 'k33))
+(buy "user-34" (read-keyset 'k34))
+(buy "user-35" (read-keyset 'k35))
+(buy "user-36" (read-keyset 'k36))
+(buy "user-37" (read-keyset 'k37))
+(buy "user-38" (read-keyset 'k38))
+(buy "user-39" (read-keyset 'k39))
+
+
+(commit-tx)
+
+;------------------------------------------------------------------------------*
+; Sales Phase 2
+(begin-tx)
+(use BRO_NS.bro-pre-sales)
+(env-chain-data {'block-time:(time "2024-04-16T00:00:00Z")})
+
+; Now we should have 50 available:
+(expect "50 batches avauilable" 50 (available-for-free-sales))
+
+
+;;; =====> BUY 50 BATCH
+(env-data {'k50:["user-50-key"],
+           'k51:["user-51-key"],
+           'k52:["user-52-key"],
+           'k53:["user-53-key"],
+           'k54:["user-54-key"],
+           'k55:["user-55-key"],
+           'k56:["user-56-key"],
+           'k57:["user-57-key"],
+           'k58:["user-58-key"],
+           'k59:["user-59-key"],
+           'k60:["user-60-key"],
+           'k61:["user-61-key"],
+           'k62:["user-62-key"],
+           'k63:["user-63-key"],
+           'k64:["user-64-key"],
+           'k65:["user-65-key"],
+           'k66:["user-66-key"],
+           'k67:["user-67-key"],
+           'k68:["user-68-key"],
+           'k69:["user-69-key"],
+           'k70:["user-70-key"],
+           'k71:["user-71-key"],
+           'k72:["user-72-key"],
+           'k73:["user-73-key"],
+           'k74:["user-74-key"],
+           'k75:["user-75-key"],
+           'k76:["user-76-key"],
+           'k77:["user-77-key"],
+           'k78:["user-78-key"],
+           'k79:["user-79-key"],
+           'k80:["user-80-key"],
+           'k81:["user-81-key"],
+           'k82:["user-82-key"],
+           'k83:["user-83-key"],
+           'k84:["user-84-key"],
+           'k85:["user-85-key"],
+           'k86:["user-86-key"],
+           'k87:["user-87-key"],
+           'k88:["user-88-key"],
+           'k89:["user-89-key"],
+           'k90:["user-90-key"],
+           'k91:["user-91-key"],
+           'k92:["user-92-key"],
+           'k93:["user-93-key"],
+           'k94:["user-94-key"],
+           'k95:["user-95-key"],
+           'k96:["user-96-key"],
+           'k97:["user-97-key"],
+           'k98:["user-98-key"],
+           'k99:["user-99-key"]})
+
+(env-sigs [{'key:"user-50-key", 'caps:[(coin.TRANSFER "user-50" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-51-key", 'caps:[(coin.TRANSFER "user-51" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-52-key", 'caps:[(coin.TRANSFER "user-52" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-53-key", 'caps:[(coin.TRANSFER "user-53" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-54-key", 'caps:[(coin.TRANSFER "user-54" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-55-key", 'caps:[(coin.TRANSFER "user-55" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-56-key", 'caps:[(coin.TRANSFER "user-56" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-57-key", 'caps:[(coin.TRANSFER "user-57" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-58-key", 'caps:[(coin.TRANSFER "user-58" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-59-key", 'caps:[(coin.TRANSFER "user-59" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-60-key", 'caps:[(coin.TRANSFER "user-60" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-61-key", 'caps:[(coin.TRANSFER "user-61" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-62-key", 'caps:[(coin.TRANSFER "user-62" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-63-key", 'caps:[(coin.TRANSFER "user-63" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-64-key", 'caps:[(coin.TRANSFER "user-64" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-65-key", 'caps:[(coin.TRANSFER "user-65" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-66-key", 'caps:[(coin.TRANSFER "user-66" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-67-key", 'caps:[(coin.TRANSFER "user-67" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-68-key", 'caps:[(coin.TRANSFER "user-68" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-69-key", 'caps:[(coin.TRANSFER "user-69" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-70-key", 'caps:[(coin.TRANSFER "user-70" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-71-key", 'caps:[(coin.TRANSFER "user-71" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-72-key", 'caps:[(coin.TRANSFER "user-72" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-73-key", 'caps:[(coin.TRANSFER "user-73" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-74-key", 'caps:[(coin.TRANSFER "user-74" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-75-key", 'caps:[(coin.TRANSFER "user-75" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-76-key", 'caps:[(coin.TRANSFER "user-76" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-77-key", 'caps:[(coin.TRANSFER "user-77" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-78-key", 'caps:[(coin.TRANSFER "user-78" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-79-key", 'caps:[(coin.TRANSFER "user-79" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-80-key", 'caps:[(coin.TRANSFER "user-80" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-81-key", 'caps:[(coin.TRANSFER "user-81" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-82-key", 'caps:[(coin.TRANSFER "user-82" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-83-key", 'caps:[(coin.TRANSFER "user-83" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-84-key", 'caps:[(coin.TRANSFER "user-84" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-85-key", 'caps:[(coin.TRANSFER "user-85" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-86-key", 'caps:[(coin.TRANSFER "user-86" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-87-key", 'caps:[(coin.TRANSFER "user-87" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-88-key", 'caps:[(coin.TRANSFER "user-88" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-89-key", 'caps:[(coin.TRANSFER "user-89" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-90-key", 'caps:[(coin.TRANSFER "user-90" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-91-key", 'caps:[(coin.TRANSFER "user-91" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-92-key", 'caps:[(coin.TRANSFER "user-92" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-93-key", 'caps:[(coin.TRANSFER "user-93" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-94-key", 'caps:[(coin.TRANSFER "user-94" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-95-key", 'caps:[(coin.TRANSFER "user-95" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-96-key", 'caps:[(coin.TRANSFER "user-96" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-97-key", 'caps:[(coin.TRANSFER "user-97" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-98-key", 'caps:[(coin.TRANSFER "user-98" SALES-INCOME-ACCOUNT 10.0)]}
+           {'key:"user-99-key", 'caps:[(coin.TRANSFER "user-99" SALES-INCOME-ACCOUNT 10.0)]}
+])
+
+(buy "user-50" (read-keyset 'k50))
+(buy "user-51" (read-keyset 'k51))
+(buy "user-52" (read-keyset 'k52))
+(buy "user-53" (read-keyset 'k53))
+(buy "user-54" (read-keyset 'k54))
+(buy "user-55" (read-keyset 'k55))
+(buy "user-56" (read-keyset 'k56))
+(buy "user-57" (read-keyset 'k57))
+(buy "user-58" (read-keyset 'k58))
+(buy "user-59" (read-keyset 'k59))
+(buy "user-60" (read-keyset 'k60))
+(buy "user-61" (read-keyset 'k61))
+(buy "user-62" (read-keyset 'k62))
+(buy "user-63" (read-keyset 'k63))
+(buy "user-64" (read-keyset 'k64))
+(buy "user-65" (read-keyset 'k65))
+(buy "user-66" (read-keyset 'k66))
+(buy "user-67" (read-keyset 'k67))
+(buy "user-68" (read-keyset 'k68))
+(buy "user-69" (read-keyset 'k69))
+(buy "user-70" (read-keyset 'k70))
+(buy "user-71" (read-keyset 'k71))
+(buy "user-72" (read-keyset 'k72))
+(buy "user-73" (read-keyset 'k73))
+(buy "user-74" (read-keyset 'k74))
+(buy "user-75" (read-keyset 'k75))
+(buy "user-76" (read-keyset 'k76))
+(buy "user-77" (read-keyset 'k77))
+(buy "user-78" (read-keyset 'k78))
+(buy "user-79" (read-keyset 'k79))
+(buy "user-80" (read-keyset 'k80))
+(buy "user-81" (read-keyset 'k81))
+(buy "user-82" (read-keyset 'k82))
+(buy "user-83" (read-keyset 'k83))
+(buy "user-84" (read-keyset 'k84))
+(buy "user-85" (read-keyset 'k85))
+(buy "user-86" (read-keyset 'k86))
+(buy "user-87" (read-keyset 'k87))
+(buy "user-88" (read-keyset 'k88))
+(buy "user-89" (read-keyset 'k89))
+(buy "user-90" (read-keyset 'k90))
+(buy "user-91" (read-keyset 'k91))
+(buy "user-92" (read-keyset 'k92))
+(buy "user-93" (read-keyset 'k93))
+(buy "user-94" (read-keyset 'k94))
+(buy "user-95" (read-keyset 'k95))
+(buy "user-96" (read-keyset 'k96))
+(buy "user-97" (read-keyset 'k97))
+(buy "user-98" (read-keyset 'k98))
+(buy "user-99" (read-keyset 'k99))
+
+; Now we should have 50 available:
+(expect "0 batches avauilable" 0 (available-for-free-sales))
+
+; Next should fail
+(env-data {'k00:["user-00-key"]})
+(env-sigs [{'key:"user-00-key", 'caps:[(coin.TRANSFER "user-00" SALES-INCOME-ACCOUNT 10.0)]}])
+
+(expect-failure "Not possible to buy" "Not possible to buy"
+                (buy "user-00" (read-keyset 'k00)))
+
+(commit-tx)
+
+;------------------------------------------------------------------------------*
+; And launch
+(begin-tx)
+(use BRO_NS.bro-pre-sales)
+(use BRO_NS.bro)
+
+(env-chain-data {'block-time:(time "2024-04-23T00:00:00Z")})
+(env-sigs [{'key:"sales", 'caps:[(SALES-OPERATOR)]}])
+
+; Gas Usage
+(env-gasmodel "table")
+(env-gaslimit 1000000)
+(env-gas 0)
+(end-sales)
+(print (+ "Gas usage: " (int-to-str 10 (env-gas))))
