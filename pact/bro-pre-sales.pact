@@ -18,8 +18,9 @@
   (defcap SALES-OPERATOR ()
     (enforce-keyset "BRO_NS.sales-operator"))
 
-
-
+  ;-----------------------------------------------------------------------------
+  ; Constants
+  ;-----------------------------------------------------------------------------
   (defconst TOTAL-BATCHES:integer 100)
 
   (defconst AMOUNT-PER-BATCH:decimal 0.4)
@@ -35,6 +36,9 @@
 
   (defconst END-OF-PRESALES (time "2024-04-22T00:00:00Z"))
 
+  ;-----------------------------------------------------------------------------
+  ; Dates functions to pre-sales phases
+  ;-----------------------------------------------------------------------------
   (defun in-phase-1:bool ()
     (and (is-past PHASE-0-START) (is-future PHASE-1-START)))
 
@@ -47,6 +51,9 @@
   (defun ended:bool ()
     (is-past END-OF-PRESALES))
 
+  ;-----------------------------------------------------------------------------
+  ; Schemas and Tables
+  ;-----------------------------------------------------------------------------
   (defschema presale-global-sch
     sold:integer
     reserved:integer
@@ -62,6 +69,10 @@
 
   (deftable accounts-table:{presale-account-sch})
 
+
+  ;-----------------------------------------------------------------------------
+  ; Caps and internal accounts management
+  ;-----------------------------------------------------------------------------
   (defcap SALES-INCOME () true)
 
   (defconst SALES-INCOME-GUARD (create-capability-guard (SALES-INCOME)))
@@ -74,21 +85,29 @@
 
   (defconst BRO-RESERVE-ACCOUNT (create-principal BRO-RESERVE-GUARD))
 
+  ;-----------------------------------------------------------------------------
+  ; Utility functions
+  ;-----------------------------------------------------------------------------
   (defun bro-account-exist:bool (account:string)
+    @doc "Check whether a $BRO account exist"
     (= account (try "" (at 'account (bro.details account))))
   )
 
+  ;-----------------------------------------------------------------------------
+  ; Utility functions
+  ;-----------------------------------------------------------------------------
+  (defun -safe:integer (x:integer y:integer)
+    @doc "Substract 2 integers, return 0 in case of negative result "
+    (if (>= x y) (- x y) 0))
+
   (defun enforce-available-for-reservation:bool ()
+    @doc "Verify that new accounts can reserve"
     (with-read global-table "" {'sold:=sold, 'reserved:=reserved}
       (enforce (< (+ sold reserved) 100) "No tokens are available for reservation"))
   )
 
-
-  (defun -safe:integer (x:integer y:integer)
-    (if (>= x y) (- x y) 0))
-
-
   (defun available-for-free-sales:integer ()
+    @doc "Returns the number of batches still available for sale"
     (with-read global-table "" {'sold:=sold, 'reserved:=reserved}
       (cond
         ((in-phase-2) (-safe 50 (+ sold reserved)))
@@ -97,11 +116,13 @@
   )
 
   (defun enforce-at-least-one-for-sale:bool ()
+    @doc "Verify that at least 1 token is for sale"
     (let ((afr (available-for-free-sales)))
       (enforce (> afr 0) "No tokens for sale"))
   )
 
   (defun has-reservation:bool (account:string)
+    @doc "Verify that the account has reserved a batch"
     (and (or (in-phase-1) (in-phase-2))
          (with-default-read accounts-table account {'reserved:0, 'bought:0} {'reserved:=reserved, 'bought:=bought}
             (and (= 0 bought) (= 1 reserved))))
@@ -111,7 +132,19 @@
     (let ((hr (has-reservation account)))
       (enforce hr "Account has no reservation")))
 
+  (defun to-bro-amount:decimal (x:integer)
+    @doc "Convert a batch count to a $BRO amount"
+    (* (dec x) AMOUNT-PER-BATCH))
+
+  (defun to-kda-amount:decimal (x:integer)
+    @doc "Convert a batch count to a KDA amount"
+    (* (dec x) PRICE-PER-BATCH))
+
+  ;-----------------------------------------------------------------------------
+  ; Public functions
+  ;-----------------------------------------------------------------------------
   (defun reserve-batch:string (account:string)
+    @doc "Reserve a batch for a given account"
     (enforce (or (in-phase-1) (in-phase-2)) "Reservation can only be done in Phase 1 or 2")
     (enforce-available-for-reservation)
 
@@ -123,13 +156,17 @@
       ; Increment the reservation count
       (with-read global-table "" {'reserved:=x}
         (update global-table "" {'reserved: (++ x)}))
-      ; And yupdate the account
+      ; And update the account
       (write accounts-table account {'account:account,
                                      'reserved:1,
                                      'bought:0}))
   )
 
+
   (defun buy:string (account:string guard:guard)
+    @doc "But a batch for an account. Guard is used to create the $BRO account \
+        \ The following cap (coin.TRANSFER account BRO-RESERVE-ACCOUNT) must   \
+        \ be installed"
     ; Sales duration must not have been elapsed
     (enforce (not (ended)) "Pre-sales have ended")
 
@@ -160,13 +197,9 @@
     (coin.transfer-create account SALES-INCOME-ACCOUNT SALES-INCOME-GUARD PRICE-PER-BATCH)
   )
 
-  (defun to-bro-amount:decimal (x:integer)
-    (* (dec x) AMOUNT-PER-BATCH))
-
-  (defun to-kda-amount:decimal (x:integer)
-    (* (dec x) PRICE-PER-BATCH))
 
   (defun end-sales:string ()
+    @doc "Definitively end the sales and close the contract"
     (enforce (ended) "Pre-sales are not ended")
     (with-capability (SALES-OPERATOR)
       ; Transfer the amount of BRO for each account...
@@ -194,23 +227,31 @@
       "Pre-sales ended")
   )
 
-  (defun get-counters ()
-    (read global-table "")
-  )
-
-  (defun get-reservations:[object{presale-account-sch}] ()
-    (if (or (in-phase-1) (in-phase-2))
-        (select accounts-table (where 'reserved (< 0)))
-        [])
-  )
-
-  (defun get-sales:[object{presale-account-sch}] ()
-    (select accounts-table (where 'bought (< 0)))
-  )
 
   (defun init:string ()
     (with-capability (GOVERNANCE)
       (insert global-table "" {'sold:0, 'reserved:0}))
     "Sales counters initialized"
   )
+
+  ;-----------------------------------------------------------------------------
+  ; Local callable functions
+  ;-----------------------------------------------------------------------------
+  (defun get-counters ()
+    @doc "Returns the counters: sold and reserved"
+    (read global-table "")
+  )
+
+  (defun get-reservations:[object{presale-account-sch}] ()
+    @doc "Returns the list of reservations"
+    (if (or (in-phase-1) (in-phase-2))
+        (select accounts-table (where 'reserved (< 0)))
+        [])
+  )
+
+  (defun get-sales:[object{presale-account-sch}] ()
+    @doc "Return the list of sold batch"
+    (select accounts-table (where 'bought (< 0)))
+  )
+
 )
