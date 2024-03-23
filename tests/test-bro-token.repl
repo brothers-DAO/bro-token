@@ -2,6 +2,25 @@
 (load "init.repl")
 
 
+; Init on a not supply chain => Rollback after
+(begin-tx)
+(use BRO_NS.bro)
+(env-sigs [{'key:"gov", 'caps:[(INIT)]}])
+
+; Try to init on a supply chain
+(env-chain-data {"chain-id":"2"})
+(expect-failure "Not the right chain" "non-supply chain"
+                (init))
+
+; And on the right chain
+(env-chain-data {"chain-id":"1"})
+(init)
+
+; A second time
+(expect-failure "Init only once" "Already intialized"
+                (init))
+(rollback-tx)
+
 (begin-tx)
 (use BRO_NS.bro)
 (env-sigs [{'key:"gov", 'caps:[(INIT)]}])
@@ -11,22 +30,22 @@
 ; Try on bad chain
 (env-chain-data {"chain-id":"13"})
 
-(expect-failure "Bad chain" "initial chain"
-                (init "pre-sales" (read-keyset 'ks-ps)
-                      "treasury"  (read-keyset 'ks-tr)
-                      "liquidity" (read-keyset 'ks-liqu)))
+(expect-failure "Bad chain" "supply chain"
+                (init-supply "pre-sales" (read-keyset 'ks-ps)
+                             "treasury"  (read-keyset 'ks-tr)
+                             "liquidity" (read-keyset 'ks-liqu)))
 
 ; On good chain
 (env-chain-data {"chain-id":"2"})
-(init "pre-sales" (read-keyset 'ks-ps)
-      "treasury"  (read-keyset 'ks-tr)
-      "liquidity" (read-keyset 'ks-liqu))
+(init-supply "pre-sales" (read-keyset 'ks-ps)
+             "treasury"  (read-keyset 'ks-tr)
+             "liquidity" (read-keyset 'ks-liqu))
 
 ; A second time
 (expect-failure "Init only once" "Already intialized"
-                (init "pre-sales" (read-keyset 'ks-ps)
-                      "treasury"  (read-keyset 'ks-tr)
-                      "liquidity" (read-keyset 'ks-liqu)))
+                (init-supply "pre-sales" (read-keyset 'ks-ps)
+                             "treasury"  (read-keyset 'ks-tr)
+                             "liquidity" (read-keyset 'ks-liqu)))
 
 
 

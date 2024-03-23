@@ -17,7 +17,7 @@
   (defconst MINIMUM_PRECISION:integer 12)
 
   ; Chain where the initial minting should happen
-  (defconst INITIAL-CHAIN "2")
+  (defconst SUPPLY-CHAIN "2")
 
   ; All deployed chain
   (defconst DEPLOYED-CHAINS ["1", "2"])
@@ -91,11 +91,8 @@
   ;-----------------------------------------------------------------------------
   ; Utility functions
   ;-----------------------------------------------------------------------------
-  (defun is-initial-chain:bool ()
-    (= INITIAL-CHAIN (chain-id)))
-
-  (defun enforce-is-initial-chain:bool ()
-    (enforce (is-initial-chain) "BRO can only be init on initial chain"))
+  (defun is-supply-chain:bool ()
+    (= SUPPLY-CHAIN (chain-id)))
 
   (defun enforce-not-initalized:bool ()
     (with-default-read init-table "" {'init:false} {'init:=init}
@@ -221,24 +218,36 @@
   ;-----------------------------------------------------------------------------
   ; Init function
   ;-----------------------------------------------------------------------------
-  (defun init:string (pre-sales-account:string pre-sales-guard:guard
-                      treasury-account:string treasury-guard:guard
-                      liquidity-account:string liquidity-guard:guard)
-  ; Check that we are on the right chain
-  (enforce-is-initial-chain)
-  ; Init should happen only once
-  (enforce-not-initalized)
+  (defun init-supply:string (pre-sales-account:string pre-sales-guard:guard
+                             treasury-account:string treasury-guard:guard
+                             liquidity-account:string liquidity-guard:guard)
+    ; Check that we are on the right chain
+    (enforce (is-supply-chain) "BRO supply can only init on supply chain")
+    ; Init should happen only once
+    (enforce-not-initalized)
 
-  (with-capability (INIT)
-    (with-capability (CREDIT pre-sales-account)
-      (credit pre-sales-account pre-sales-guard 40.0))
+    (with-capability (INIT)
+      (with-capability (CREDIT pre-sales-account)
+        (credit pre-sales-account pre-sales-guard 40.0))
 
-    (with-capability (CREDIT treasury-account)
-      (credit treasury-account treasury-guard 20.0))
+      (with-capability (CREDIT treasury-account)
+        (credit treasury-account treasury-guard 20.0))
 
-    (with-capability (CREDIT liquidity-account)
-      (credit liquidity-account liquidity-guard 40.0))
+      (with-capability (CREDIT liquidity-account)
+        (credit liquidity-account liquidity-guard 40.0))
 
-    (write init-table "" {'init:true}))
+      (write init-table "" {'init:true}))
+    "BRO intialized"
+  )
+
+  (defun init:string ()
+    ; Check that we are on the right chain
+    (enforce (not (is-supply-chain)) "BRO std init can only be done on a non-supply chain")
+
+    ; Init should happen only once
+    (enforce-not-initalized)
+    (with-capability (INIT)
+      (write init-table "" {'init:true}))
+    "BRO intialized"
   )
 )

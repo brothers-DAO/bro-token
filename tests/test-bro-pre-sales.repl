@@ -9,9 +9,9 @@
 (env-data {'ks-ps:["pres-sales-key"], 'ks-tr:["treasury-key"], 'ks-liqu:["liquidity-key"] })
 
 (env-chain-data {"chain-id":"2"})
-(init BRO_NS.bro-pre-sales.BRO-RESERVE-ACCOUNT  BRO_NS.bro-pre-sales.BRO-RESERVE-GUARD
-      "treasury"  (read-keyset 'ks-tr)
-      "liquidity" (read-keyset 'ks-liqu))
+(init-supply BRO_NS.bro-pre-sales.BRO-RESERVE-ACCOUNT  BRO_NS.bro-pre-sales.BRO-RESERVE-GUARD
+             "treasury"  (read-keyset 'ks-tr)
+             "liquidity" (read-keyset 'ks-liqu))
 (commit-tx)
 
 ; Before pre-sales
