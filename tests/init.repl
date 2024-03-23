@@ -1,4 +1,7 @@
 (begin-tx)
+(load "ecko/init_ecko.repl")
+
+(begin-tx)
 (define-namespace "BRO_NS" basic-guards.GUARD_SUCCESS basic-guards.GUARD_SUCCESS)
 (namespace "BRO_NS")
 
@@ -17,6 +20,11 @@
 (load "../pact/bro-token.pact")
 (create-table user-accounts-table)
 (create-table init-table)
+
+(load "../pact/bro-treasury.pact")
+(create-table liquidity-management)
+(create-table tips-counters)
+(init)
 
 (env-data {'treasury-g:["treasury-key"], 'liquidity-g:["liquidity-key"]})
 (load "../pact/bro-pre-sales.pact")

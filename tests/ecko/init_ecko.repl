@@ -1,0 +1,23 @@
+(begin-tx)
+(env-exec-config ['DisablePact44])
+(env-data {'ks-gov:["gov"], 'ks-ops:["ops"]})
+(define-keyset "kaddex-exchange-admin" (read-keyset 'ks-gov))
+(define-keyset "kaddex-exchange-ops" (read-keyset 'ks-ops))
+(env-exec-config)
+(commit-tx)
+
+(begin-tx)
+(env-keys ["gov"])
+(define-namespace "kaddex" basic-guards.GUARD_SUCCESS basic-guards.GUARD_SUCCESS)
+(namespace "kaddex")
+(env-data {'upgrade:0, 'ns:"kaddex", 'initial-lock:false})
+
+
+(load "smart-contracts/kadenaswap/fungible-util.pact")
+(load "smart-contracts/kadenaswap/swap-callable.pact")
+(load "smart-contracts/kadenaswap/tokens.pact")
+(load "smart-contracts/kadenaswap/exchange.pact")
+
+(commit-tx)
+(env-keys [])
+(env-data {})

@@ -1,0 +1,314 @@
+(load "kadena_repl_sandbox/kda-env/init.repl")
+(load "init.repl")
+
+(env-enable-repl-natives true)
+(begin-tx)
+(repl-coin-tools.fund-account "temp" "temp-key" 1000.0)
+(commit-tx)
+(env-enable-repl-natives false)
+
+(begin-tx)
+(env-sigs [{'key:"temp-key", 'caps:[(coin.TRANSFER "temp" BRO_NS.bro-treasury.LIQUIDITY-ACCOUNT 1000.0)]}])
+(coin.transfer-create "temp" BRO_NS.bro-treasury.LIQUIDITY-ACCOUNT BRO_NS.bro-treasury.LIQUIDITY-GUARD 1000.0)
+(commit-tx)
+
+
+(begin-tx)
+(use BRO_NS.bro)
+(env-sigs [{'key:"gov", 'caps:[(INIT)]}])
+
+(env-data {'ks-ps:["pres-sales-key"], 'ks-tr:["treasury-key"], 'ks-liqu:["liquidity-key"] })
+
+(env-chain-data {"chain-id":"2"})
+(init-supply "pre-sales" (read-keyset 'ks-ps)
+             BRO_NS.bro-treasury.TREASURY-ACCOUNT BRO_NS.bro-treasury.TREASURY-GUARD
+             BRO_NS.bro-treasury.LIQUIDITY-ACCOUNT BRO_NS.bro-treasury.LIQUIDITY-GUARD)
+
+(commit-tx)
+
+; Create eckoDEX pair
+; EckoDEX module is buggy and requires DisableRuntimeReturnTypeChecking to create a pair
+(env-exec-config ["DisableRuntimeReturnTypeChecking"])
+(begin-tx)
+(kaddex.exchange.create-pair coin BRO_NS.bro "")
+(commit-tx)
+(env-exec-config)
+
+
+; Create accounts
+(begin-tx)
+(env-data {'alice-ks:["alice-key"], 'bob-ks:["bob-key"]})
+(BRO_NS.bro.create-account "alice" (read-keyset 'alice-ks))
+(BRO_NS.bro.create-account "bob" (read-keyset 'bob-ks))
+
+; Password is "My-Password"
+(print (+ "Alice: " (BRO_NS.bro-registry.encrypt-tg-account "@alice" "My-Password")))
+(print (+ "Bob:"  (BRO_NS.bro-registry.encrypt-tg-account "@bob" "My-Password")))
+; Alice = enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus
+; Bob = enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw
+
+
+(expect "Alice balance = 0" 0.0 (BRO_NS.bro.get-balance "alice"))
+(expect "Bob balance = 0" 0.0 (BRO_NS.bro.get-balance "bob"))
+
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-registry.BOT-OPERATOR)]}])
+(BRO_NS.bro-registry.register "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus" "YWxpY2U")
+(BRO_NS.bro-registry.register "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw" "Ym9i")
+(commit-tx)
+(env-sigs [])
+
+; Starts to tip
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-chain-data {'block-time:(time "2024-05-01T00:00:00Z")})
+(env-data {'alice-ks:["alice-key"], 'bob-ks:["bob-key"]})
+
+; Try without signature
+(expect-failure "No signtaure" "Keyset failure"
+                (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus"))
+
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(expect-failure "User doesnt exist" "not registered"
+                (tip "enc_22xvoLlOgb3KUShr8tWvDXB9W3oNFTMQLQXs0KF9g7o"))
+
+; Tip Alice
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+
+; Tip Alice 2
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:05:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 3
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:10:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 4
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:15:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 5
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:20:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 6
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:25:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 7
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:30:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Bob 1
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:35:00Z")})
+(tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+(commit-tx)
+
+; Tip Bob 2
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:40:00Z")})
+(tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+(commit-tx)
+
+; Tip Bob 3
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:45:00Z")})
+(tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+(commit-tx)
+
+; Verify balances
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(use BRO_NS.bro)
+(expect "Alice Balance 7 tip" 0.007 (get-balance "alice"))
+(expect "Bob Balance 3 tip"   0.003 (get-balance "bob"))
+
+(expect-that "Tips total= 0.01" (compose (at 'total) (= 0.01)) (get-tips-counters))
+(expect-that "Tips cnt= 10"     (compose (at 'cnt) (= 10))     (get-tips-counters))
+(commit-tx)
+
+;Try to tip (but me have already tipped to much in the last hour)
+; Tip Bob 4
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:50:00Z")})
+(expect-failure "Too much tips" "Too much tips"
+                (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
+(commit-tx)
+
+; Wait a little bit and we are able to tip again
+; Tip Bob 4
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:02:00Z")})
+(tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+(commit-tx)
+
+; But not 1 minute later
+; Tip Bob 5
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:03:00Z")})
+(expect-failure "Too much tips" "Too much tips"
+                (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
+(commit-tx)
+
+; Wait a little bit and we are able to tip again
+; Tip Bob 5
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:07:00Z")})
+(tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
+(commit-tx)
+
+; --------------------- DEX RECOVER FEES AND PUMP TEST -------------------------
+; First we deploy the first liquidity
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"gov", 'caps:[(INIT)]}])
+(init-liquidity)
+(print "--------------------------------------")
+(print "LP tokens Balance / Liquidity:")
+(print (kaddex.tokens.get-balance (kaddex.exchange.get-pair-key  BRO_NS.bro coin) LIQUIDITY-ACCOUNT))
+(print (current-liquidity))
+(print "--------------------------------------\n")
+
+(expect "No liquidity to remove" 0.0 (liquidity-to-remove))
+
+(commit-tx)
+
+
+; Simulate some swaps
+(begin-tx)
+(use kaddex.exchange)
+(use BRO_NS.bro-treasury)
+
+(env-data {'carol-ks:["carol-key"], 'dave-ks:["dave-key"]})
+
+(env-sigs [{'key:"carol-key", 'caps:[(coin.TRANSFER "carol" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 1000.0)]}])
+(swap-exact-in 10.0 0.00000001 [coin BRO_NS.bro] "carol" "carol" (read-keyset 'carol-ks))
+
+(env-sigs [{'key:"dave-key", 'caps:[(coin.TRANSFER "dave" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 1000.0)]}])
+(swap-exact-in 10.0 0.1 [coin BRO_NS.bro] "dave" "dave" (read-keyset 'dave-ks))
+
+(env-sigs [{'key:"carol-key", 'caps:[(BRO_NS.bro.TRANSFER "carol" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 100.0)]}])
+(swap-exact-in (BRO_NS.bro.get-balance "carol") 0.1 [BRO_NS.bro coin] "carol" "carol" (read-keyset 'carol-ks))
+
+(env-sigs [{'key:"dave-key", 'caps:[(BRO_NS.bro.TRANSFER "dave" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 100.0)]}])
+(swap-exact-in (BRO_NS.bro.get-balance "dave") 0.1 [BRO_NS.bro coin] "dave" "dave" (read-keyset 'dave-ks))
+
+(print "--------------------------------------")
+(print "KDA Balances after SWAPS")
+(print (format "Carol: {}" [(coin.get-balance "carol")]))
+(print (format "Bob: {}"   [(coin.get-balance "dave")]))
+(print "--------------------------------------\n")
+
+(print "--------------------------------------")
+(print "BRO Balances after SWAPS")
+(print (format "Carol: {}" [(BRO_NS.bro.get-balance "carol")]))
+(print (format "Bob: {}"   [(BRO_NS.bro.get-balance "dave")]))
+(print "--------------------------------------\n")
+
+
+; We rougly have swapped 40 KDA, and rebalanced pair => (40 * 0.3%) = 0.12 KDA of income roughlt 0.048 BRO TOTAL INCOME
+(commit-tx)
+
+
+
+(begin-tx)
+(use kaddex.exchange)
+(use BRO_NS.bro-treasury)
+(use BRO_NS.bro)
+(use free.util-math)
+(env-data {'ks:["alice-key"]})
+
+(env-sigs [{'key:"bot", 'caps:[(OPERATE-DEX)]}])
+(expect "Treadury balance must be 20.0 - 0.001 * 12 (already tipped)" (- 20.0 (* 0.001 12.0)) (get-balance TREASURY-ACCOUNT))
+
+
+; We expect to have thaered 0.048 $BRO
+(let ((previous-value (get-balance TREASURY-ACCOUNT)))
+  (gather-rewards)
+  (expect-that  "Treadury balance must be rougly 0.048$ more" (compose (+ (- previous-value))
+                                                                       (between 0.0046 0.0048)) (get-balance TREASURY-ACCOUNT)))
+(commit-tx)
+
+; Now lets do another bunch of swaps
+(begin-tx)
+(use kaddex.exchange)
+(use BRO_NS.bro-treasury)
+
+(env-data {'carol-ks:["carol-key"], 'dave-ks:["dave-key"]})
+
+(env-sigs [{'key:"carol-key", 'caps:[(coin.TRANSFER "carol" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 1000.0)]}])
+(swap-exact-in 10.0 0.00000001 [coin BRO_NS.bro] "carol" "carol" (read-keyset 'carol-ks))
+
+(env-sigs [{'key:"dave-key", 'caps:[(coin.TRANSFER "dave" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 1000.0)]}])
+(swap-exact-in 10.0 0.1 [coin BRO_NS.bro] "dave" "dave" (read-keyset 'dave-ks))
+
+(env-sigs [{'key:"carol-key", 'caps:[(BRO_NS.bro.TRANSFER "carol" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 100.0)]}])
+(swap-exact-in (BRO_NS.bro.get-balance "carol") 0.1 [BRO_NS.bro coin] "carol" "carol" (read-keyset 'carol-ks))
+
+(env-sigs [{'key:"dave-key", 'caps:[(BRO_NS.bro.TRANSFER "dave" "VQqOeOhWJre-_4BFUk6aHr3Hf6hwgAwl_gFGf6S5iYo" 100.0)]}])
+(swap-exact-in (BRO_NS.bro.get-balance "dave") 0.1 [BRO_NS.bro coin] "dave" "dave" (read-keyset 'dave-ks))
+(commit-tx)
+
+
+; And we are going to mint the rewards, but first we force a mint fee before gather
+; And therefore we will receive th right fee 0.25 %, and recover the total Liquidity baance
+; 80 KDA get swapped in total => (80 * 0.25%) = 0.2 KDA = 0.008 $BRO
+(begin-tx)
+(use kaddex.exchange)
+(use BRO_NS.bro-treasury)
+(use BRO_NS.bro)
+(use free.util-math)
+
+(env-sigs [{'key:"ops", 'caps:[(OPS)]}])
+(mint-fee-manual (get-pair-key coin BRO_NS.bro))
+
+(env-sigs [{'key:"bot", 'caps:[(OPERATE-DEX)]}])
+
+(gather-rewards)
+
+(let ((initial-balance (- 20.0 (* 0.001 12.0))))
+  (expect-that  "Treadury balance must be rougly 0.008 $BRO more" (compose (+ (- initial-balance))
+                                                                      (between 0.0078 0.0082)) (get-balance TREASURY-ACCOUNT)))
+
+(expect-that "Current liquidity must be 199.9" (between 199.89 199.91) (current-liquidity))
+(commit-tx)

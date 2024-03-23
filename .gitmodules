@@ -1,3 +1,6 @@
 [submodule "tests/kadena_repl_sandbox"]
 	path = tests/kadena_repl_sandbox
 	url = https://github.com/CryptoPascal31/kadena_repl_sandbox
+[submodule "tests/ecko/smart-contracts"]
+	path = tests/ecko/smart-contracts
+	url = https://github.com/eckoDAO-org/smart-contracts
