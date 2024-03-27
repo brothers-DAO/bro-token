@@ -27,8 +27,6 @@
     (compose-capability (BOT-OPERATOR))
     (compose-capability (LIQUIDITY)))
 
-
-
   ;-----------------------------------------------------------------------------
   ; Caps and internal accounts management
   ;-----------------------------------------------------------------------------
@@ -39,7 +37,6 @@
   (defcap LIQUIDITY () true)
   (defconst LIQUIDITY-GUARD (create-capability-guard (LIQUIDITY)))
   (defconst LIQUIDITY-ACCOUNT (create-principal LIQUIDITY-GUARD))
-
 
   ;-----------------------------------------------------------------------------
   ; Constants (tips)
