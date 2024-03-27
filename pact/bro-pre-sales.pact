@@ -2,13 +2,6 @@
   (use free.util-time)
   (use free.util-math)
 
-  ; Temporary
-  (defconst TREASURY-ACCOUNT "treasury")
-  (defconst LIQUIDITY-ACCOUNT "liquidity")
-
-  (defconst TREASURY-GUARD (read-keyset 'treasury-g))
-  (defconst LIQUIDITY-GUARD (read-keyset 'liquidity-g))
-
   ;-----------------------------------------------------------------------------
   ; Administrative and ops capabilities
   ;-----------------------------------------------------------------------------
@@ -216,14 +209,14 @@
         ; Transfer remaining to treasury (if not all sold)
         (if (< sold 100)
             (with-capability (BRO-RESERVE)
-              (install-capability (bro.TRANSFER BRO-RESERVE-ACCOUNT TREASURY-ACCOUNT (to-bro-amount (- 100 sold))))
-              (bro.transfer-create BRO-RESERVE-ACCOUNT TREASURY-ACCOUNT TREASURY-GUARD (to-bro-amount (- 100 sold))))
+              (install-capability (bro.TRANSFER BRO-RESERVE-ACCOUNT bro-treasury.TREASURY-ACCOUNT (to-bro-amount (- 100 sold))))
+              (bro.transfer-create BRO-RESERVE-ACCOUNT bro-treasury.TREASURY-ACCOUNT bro-treasury.TREASURY-GUARD (to-bro-amount (- 100 sold))))
             "")
 
       ; Transfer the income (in KDA) to treasury (for DEX liquidity)
       (with-capability (SALES-INCOME)
-        (install-capability (coin.TRANSFER SALES-ACCOUNT LIQUIDITY-ACCOUNT (to-kda-amount sold)))
-        (coin.transfer-create SALES-ACCOUNT LIQUIDITY-ACCOUNT LIQUIDITY-GUARD (to-kda-amount sold))))
+        (install-capability (coin.TRANSFER SALES-ACCOUNT bro-treasury.LIQUIDITY-ACCOUNT (to-kda-amount sold)))
+        (coin.transfer-create SALES-ACCOUNT bro-treasury.LIQUIDITY-ACCOUNT bro-treasury.LIQUIDITY-GUARD (to-kda-amount sold))))
       "Pre-sales ended")
   )
 

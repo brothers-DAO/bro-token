@@ -128,3 +128,9 @@
 
 (expect "Alice balance is 0.8: 2 batches" 0.8 (get-balance "alice"))
 (expect "Dave balance is 0.4: 1 batch" 0.4 (get-balance "dave"))
+
+; Treasury should receive the unsold
+(expect "Treasury balance is 40.0 - 1.2 = 18.8" 38.8 (try 0.0 (get-balance BRO_NS.bro-treasury.TREASURY-ACCOUNT)))
+
+; Liquidity account in KDA should receive the income
+(expect "Treasury balance is 3 batchs * 10 = 30.0" 30.0 (coin.get-balance BRO_NS.bro-treasury.LIQUIDITY-ACCOUNT))

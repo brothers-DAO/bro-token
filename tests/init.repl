@@ -26,7 +26,6 @@
 (create-table tips-counters)
 (init)
 
-(env-data {'treasury-g:["treasury-key"], 'liquidity-g:["liquidity-key"]})
 (load "../pact/bro-pre-sales.pact")
 (create-table global-counters)
 (create-table accounts-table)

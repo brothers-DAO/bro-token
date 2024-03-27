@@ -560,3 +560,10 @@
 (env-gas 0)
 (end-sales)
 (print (+ "Gas usage: " (int-to-str 10 (env-gas))))
+
+
+; Treasury should receive nothing
+(expect "Treasury balance is only 0" 0.0 (try 0.0 (get-balance BRO_NS.bro-treasury.TREASURY-ACCOUNT)))
+
+; Liquidity account in KDA should receive all the income
+(expect "Treasury balance is 100 batchs * 10 = 1000.0" 1000.0 (coin.get-balance BRO_NS.bro-treasury.LIQUIDITY-ACCOUNT))
