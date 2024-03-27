@@ -8,9 +8,9 @@
 
 (begin-tx)
 (env-keys ["gov"])
-(define-namespace "kaddex" basic-guards.GUARD_SUCCESS basic-guards.GUARD_SUCCESS)
-(namespace "kaddex")
-(env-data {'upgrade:0, 'ns:"kaddex", 'initial-lock:false})
+(define-namespace "DEX_NS" basic-guards.GUARD_SUCCESS basic-guards.GUARD_SUCCESS)
+(namespace "DEX_NS")
+(env-data {'upgrade:0, 'ns:"DEX_NS", 'initial-lock:false})
 
 
 (load "smart-contracts/kadenaswap/fungible-util.pact")

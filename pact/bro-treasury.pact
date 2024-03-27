@@ -1,6 +1,6 @@
 (module bro-treasury GOVERNANCE
-  (implements kaddex.swap-callable-v1)
-  (use kaddex.exchange [get-pair-key get-pair-by-key reserve-for add-liquidity swap remove-liquidity FEE])
+  (implements DEX_NS.swap-callable-v1)
+  (use DEX_NS.exchange [get-pair-key get-pair-by-key reserve-for add-liquidity swap remove-liquidity FEE])
   (use bro-registry [get-bro-account])
   (use free.util-math)
   (use free.util-time)
@@ -92,11 +92,11 @@
   (defun liquidity-ratio:decimal ()
     @doc "Returns the ratio (Geom Mean of liquidity) / (LP totak supply)"
     (div (sqrt (prod (dex-reserves)))
-         (kaddex.tokens.total-supply DEX-KEY)))
+         (DEX_NS.tokens.total-supply DEX-KEY)))
 
   (defun current-balance:decimal ()
     @doc "Return our LP token balance"
-    (kaddex.tokens.get-balance DEX-KEY LIQUIDITY-ACCOUNT))
+    (DEX_NS.tokens.get-balance DEX-KEY LIQUIDITY-ACCOUNT))
 
   (defun current-liquidity:decimal ()
     @doc "Returns the total liquidity we own"
@@ -108,7 +108,7 @@
         \ Not a big deal: this may add a small hysteresis => But on the long term, it's OK"
     (with-read liquidity-management "" {'liquidity-target:=target}
       (floor (- (current-balance) (div target (liquidity-ratio)))
-             (kaddex.tokens.precision DEX-KEY))))
+             (DEX_NS.tokens.precision DEX-KEY))))
 
   (defun kda-to-bro:decimal (x:decimal)
     @doc "Compute the amount of BRO we can have from a given amount of KDA"
@@ -150,7 +150,7 @@
       ; Withdraw the reward liquidity
       (let ((amount (liquidity-to-remove)))
         (enforce (> amount 0.0) "No rewards to gather")
-        (install-capability (kaddex.tokens.TRANSFER DEX-KEY LIQUIDITY-ACCOUNT (dex-account) amount))
+        (install-capability (DEX_NS.tokens.TRANSFER DEX-KEY LIQUIDITY-ACCOUNT (dex-account) amount))
         (remove-liquidity coin bro amount 0.0 0.0 LIQUIDITY-ACCOUNT LIQUIDITY-ACCOUNT LIQUIDITY-GUARD))
 
       ; Transfer all $BRO to the treasury

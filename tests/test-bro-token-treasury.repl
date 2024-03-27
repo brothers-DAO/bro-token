@@ -30,7 +30,7 @@
 ; EckoDEX module is buggy and requires DisableRuntimeReturnTypeChecking to create a pair
 (env-exec-config ["DisableRuntimeReturnTypeChecking"])
 (begin-tx)
-(kaddex.exchange.create-pair coin BRO_NS.bro "")
+(DEX_NS.exchange.create-pair coin BRO_NS.bro "")
 (commit-tx)
 (env-exec-config)
 
@@ -205,7 +205,7 @@
 (init-liquidity)
 (print "--------------------------------------")
 (print "LP tokens Balance / Liquidity:")
-(print (kaddex.tokens.get-balance (kaddex.exchange.get-pair-key  BRO_NS.bro coin) LIQUIDITY-ACCOUNT))
+(print (DEX_NS.tokens.get-balance (DEX_NS.exchange.get-pair-key  BRO_NS.bro coin) LIQUIDITY-ACCOUNT))
 (print (current-liquidity))
 (print "--------------------------------------\n")
 
@@ -216,7 +216,7 @@
 
 ; Simulate some swaps
 (begin-tx)
-(use kaddex.exchange)
+(use DEX_NS.exchange)
 (use BRO_NS.bro-treasury)
 
 (env-data {'carol-ks:["carol-key"], 'dave-ks:["dave-key"]})
@@ -252,7 +252,7 @@
 
 
 (begin-tx)
-(use kaddex.exchange)
+(use DEX_NS.exchange)
 (use BRO_NS.bro-treasury)
 (use BRO_NS.bro)
 (use free.util-math)
@@ -271,7 +271,7 @@
 
 ; Now lets do another bunch of swaps
 (begin-tx)
-(use kaddex.exchange)
+(use DEX_NS.exchange)
 (use BRO_NS.bro-treasury)
 
 (env-data {'carol-ks:["carol-key"], 'dave-ks:["dave-key"]})
@@ -294,7 +294,7 @@
 ; And therefore we will receive th right fee 0.25 %, and recover the total Liquidity baance
 ; 80 KDA get swapped in total => (80 * 0.25%) = 0.2 KDA = 0.008 $BRO
 (begin-tx)
-(use kaddex.exchange)
+(use DEX_NS.exchange)
 (use BRO_NS.bro-treasury)
 (use BRO_NS.bro)
 (use free.util-math)
