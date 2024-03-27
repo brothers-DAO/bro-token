@@ -7,6 +7,9 @@ Low limited supply: **100.0 $BRO** in total
 Public treasury will distribute slowly some $BRO to best contributors through tipping for KCP
 (Kadena Culture Production)
 
+The token has 12 decimals. The minimum usable amount is **0.000000000001** and is called a **Doug**.
+An amount of **0.0001** is called a **GiDoug**.
+
 ## Tokenomics
 
 |                   |                                   |                                                |
@@ -67,7 +70,7 @@ bot knows the password that can associate a TG account to a $BRO account.
 
 $BRO is mined by tipping. Tips can be obtained in Brothers TG group by doing KCP
 (KCP means Kadena Culture Production = Producing original Meme).
-The tip amount is **0.001 $BRO**. To limit inflation, the smart-contract enforces a maximum of 10 tips / hour.
+The tip amount is **1 GiDoug** (**0.001 $BRO**). To limit inflation, the smart-contract enforces a maximum of 10 tips / hour.
 
 Tips are paid from the *Public Treasury*.
 
