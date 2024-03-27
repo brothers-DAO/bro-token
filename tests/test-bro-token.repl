@@ -59,3 +59,139 @@
 (expect-that "KS of liquidity" (compose (at 'guard) (= (read-keyset 'ks-liqu))) (details "liquidity"))
 
 (commit-tx)
+
+; Some basic transfer tests
+(begin-tx)
+(use BRO_NS.bro)
+; No signature
+(env-data {'alice-ks:["alice-key"], 'bob-ks:["bob-key"]})
+(expect-failure "No Sig/cap" "Managed capability not installed"
+                (transfer-create "liquidity" "alice" (read-keyset 'alice-ks) 1.0))
+
+(env-sigs [{'key:"liquidity-key", 'caps:[(TRANSFER "liquidity" "alice" 2.0)] }])
+
+(transfer-create "liquidity" "alice" (read-keyset 'alice-ks) 1.0)
+
+(expect "Balance of alice is 1.0" 1.0 (get-balance "alice"))
+(expect "Balance of liquidity is 39.0" 39.0 (get-balance "liquidity"))
+
+(transfer "liquidity" "alice" 1.0)
+
+(expect "Balance of alice is 2.0" 2.0 (get-balance "alice"))
+(expect "Balance of liquidity is 38.0" 38.0 (get-balance "liquidity"))
+
+;; Transfer with cap exhausted
+(expect-failure "Managed cap exhausted" "TRANSFER exceeded for balance"
+                  (transfer "liquidity" "alice" 1.0))
+
+(commit-tx)
+
+; Transfer to a non existing account => We will need to rollback to cancel debit
+(begin-tx)
+(use BRO_NS.bro)
+(env-data {'bob-ks:["bob-key"]})
+(env-sigs [{'key:"liquidity-key", 'caps:[(TRANSFER "liquidity" "bob" 2.0)] }])
+
+(expect-failure "Account does not exist" "row not found"
+                  (transfer "liquidity" "bob" 1.0))
+(rollback-tx)
+
+
+; After account creation, it should work
+(begin-tx)
+(use BRO_NS.bro)
+(env-data {'bob-ks:["bob-key"]})
+(env-sigs [{'key:"liquidity-key", 'caps:[(TRANSFER "liquidity" "bob" 2.0)] }])
+; Account creation
+(create-account "bob" (read-keyset 'bob-ks))
+
+; Now we are able to transfer to bob
+(transfer "liquidity" "bob" 1.0)
+
+(expect "Balance of bob is 1.0" 1.0 (get-balance "bob"))
+(expect "Balance of liquidity is 37.0" 37.0 (get-balance "liquidity"))
+
+(commit-tx)
+
+
+; Do some principals tests
+(begin-tx)
+(use BRO_NS.bro)
+
+(namespace "free")
+(module my-mod G
+  (defcap G() true)
+  (defcap MY-CAP () true)
+  (defconst MY-GUARD  (create-capability-guard (my-mod.MY-CAP)))
+  (defconst MY-ACCOUNT (create-principal MY-GUARD))
+)
+
+
+; Create a k-account with a wrong key
+(env-data {'bob-ks:["bob-key"], 'std-ks:["3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd"]})
+(env-sigs [{'key:"liquidity-key", 'caps:[(TRANSFER "liquidity" "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" 10.0)
+                                         (TRANSFER "liquidity" my-mod.MY-ACCOUNT 10.0)] }])
+
+
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (create-account "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" (read-keyset 'bob-ks)))
+
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (transfer-create "liquidity" "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" (read-keyset 'bob-ks) 1.0))
+
+
+; Try with a cap guard
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (create-account "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" my-mod.MY-GUARD))
+
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (transfer-create "liquidity" "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" my-mod.MY-GUARD 1.0))
+
+; A cap account with a key guard
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (create-account my-mod.MY-ACCOUNT (read-keyset 'std-ks)))
+
+(expect-failure "Principal violation" "Reserved protocol guard violation"
+                (transfer-create "liquidity" my-mod.MY-ACCOUNT (read-keyset 'std-ks) 1.0))
+
+
+; And now do everything as it should
+(create-account my-mod.MY-ACCOUNT my-mod.MY-GUARD)
+
+(transfer-create "liquidity" "k:3146439c72e1ff13750eb0abd9891b90eb28ff011284ec337ad037e3ec264afd" (read-keyset 'std-ks) 1.0)
+
+; Clean all the mess (because aborted transfer create)
+(rollback-tx)
+
+; X-chains transfers
+(begin-tx)
+(use BRO_NS.bro)
+(env-data {'carol-ks:["carol-key"]})
+(env-chain-data {"chain-id":"1"})
+
+; To a bad chain
+
+; Withouth the right cap
+(expect-failure "Without the cap" "Managed capability not installed"
+                (transfer-crosschain "bob" "carol" (read-keyset 'carol-ks) "2" 1.0))
+
+; To a bad chain
+(env-sigs [{'key:"bob-key", 'caps:[(TRANSFER_XCHAIN "bob" "carol" 1.0 "5")] }])
+(expect-failure "Bad chain" "is not deployed on chain"
+                (transfer-crosschain "bob" "carol" (read-keyset 'carol-ks) "5" 1.0))
+
+; Same chain
+; To a bad chain
+(env-sigs [{'key:"bob-key", 'caps:[(TRANSFER_XCHAIN "bob" "carol" 1.0 "1")] }])
+(expect-failure "Same chain" "Target chain 1 cannot be the current chain 1"
+                (transfer-crosschain "bob" "carol" (read-keyset 'carol-ks) "1" 1.0))
+
+(env-sigs [{'key:"bob-key", 'caps:[(TRANSFER_XCHAIN "bob" "carol" 1.0 "2")] }])
+(transfer-crosschain "bob" "carol" (read-keyset 'carol-ks) "2" 1.0)
+
+(expect "Balance of bob is now 0.0" 0.0 (get-balance "bob"))
+
+(env-chain-data {"chain-id":"2"})
+(continue-pact 1)
+
+(expect "Balance of carol is now 1.0" 1.0 (get-balance "carol"))
