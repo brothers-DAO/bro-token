@@ -177,8 +177,8 @@
                                                (enforce-at-least-one-for-sale)])
 
     (with-default-read accounts-table account {'bought:0, 'reserved:0} {'bought:=bought, 'reserved:=reserved}
-      ; Check that in phase 2, account has never bought before
-      (enforce (or (in-phase-2) (= 0 bought)) "Multiple purchase are only possible in phase 3")
+      ; Check that in phase 1, account has never bought before
+      (enforce (or (in-phase-2) (= 0 bought)) "Multiple purchase are only possible in phase 2")
       ; Increment the bought and optionnaly cancel reservation
       (write accounts-table account {'account:account,
                                      'bought:(++ bought),
