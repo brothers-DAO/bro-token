@@ -157,7 +157,7 @@
 
   (defun buy:string (account:string guard:guard)
     @doc "But a batch for an account. Guard is used to create the $BRO account \
-        \ The following cap (coin.TRANSFER account BRO-RESERVE-ACCOUNT) must   \
+        \ The following cap (coin.TRANSFER account SALES-ACCOUNT PRICE-PER-BATCH) must   \
         \ be installed"
     ; Sales duration must not have been elapsed
     (enforce (not (ended)) "Pre-sales have ended")
