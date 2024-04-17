@@ -1,0 +1,14 @@
+network: testnet04
+chain: "17"
+gas-payer: k:9a7008dc022e14c8421dac1ebf5b7f409f56a7dcc31ccba8f20e5ee39c37be6d
+gas-payer-key: 9a7008dc022e14c8421dac1ebf5b7f409f56a7dcc31ccba8f20e5ee39c37be6d
+
+## Ecko clone parameters
+gov-key: fb3978c4acc9b4d2daa53d3174cfcf31b65edb76b6a5e5cfac4015b48021c23f
+ecko-ns: n_8e906b0c6bd3a01c2002dc06fcb2dbe2eb8afa76
+
+## Bro parameters
+bro-ns: n_5d119cc07ffd5efaef5c7feef9e878f34e3d4652
+ns-key: 134be8bef4d4114fcbb43e3c3eeba4f9c25ad711ced1d54882f77da3599e6a75
+bro-gov-key: f4a897777cba6b239557666c1f951479fa386a2480d33a9c4c6c0c1d50923010
+bro-sales-key: d985dd96ae8affc189af920426e24e0e5993b125ecec4fa834adfc83b0a69138
