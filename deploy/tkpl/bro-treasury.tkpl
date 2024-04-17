@@ -1,0 +1,20 @@
+codeFile: .pact/bro-treasury.pact
+
+publicMeta:
+  chainId: "{{chain}}"
+  sender: {{gas-payer}}
+  gasLimit: 120000
+  gasPrice: 0.00000001
+  ttl: 7200
+networkId: {{network}}
+
+signers:
+  - public: {{bro-gov-key}}
+    caps: []
+  - public: {{ns-key}}
+    caps: []
+  - public: {{gas-payer-key}}
+    caps:
+      - name: coin.GAS
+        args: []
+type: exec
