@@ -8,14 +8,13 @@ Public treasury will distribute slowly some $BRO to best contributors through ti
 (Kadena Culture Production)
 
 The token has 12 decimals. The minimum usable amount is **0.000000000001** and is called a **Doug**.
-An amount of **0.0001** is called a **GiDoug**.
+An amount of **0.001** is called a **GiDoug**.
 
 ## Tokenomics
 
 |                   |                                   |                                                |
 | ----------------- | ----------------------------------|------------------------------------------------|
 | Public Treasury   | 20.0 $BRO + Pre-sales unsold      | Used to tip 0.001 $BRO for KCP                 |
-| Private Treasury  | TBD $BRO                          | Reserved for funding future projects           |    
 | DEX Liquidity     | 40.0 $BRO + Pre-sales income KDA  | DEX fees income transferred to public treasury |
 | Pre-sales         | 40.0 $BRO                         | Distributed after pre-sales to holders         |
 | **Total**         | **100.0 $BRO**                    |                                                |
@@ -83,3 +82,8 @@ Earned DEX fees are automatically:
 * **KDA**: Swapped to $BRO (self pumping) and transferred to the *Public Treasury*
 
 (Expected $BRO initial price = 25.0 KDA)
+
+## Contracts and Governance
+- **token contract**: Governance by a multi-sig... And after some days/week govenrnance will completely be disabled and crontract locked.
+- **pre-sales contract**: Governance by a multi-sig... Temporary contract. Will have no more usage after and of pre-sales.
+- **public-treasury contract**: Governance by a multi-sig. There is no plan to lock the governance... Allowing to upgrade treasury management's policy.
