@@ -84,6 +84,6 @@ Earned DEX fees are automatically:
 (Expected $BRO initial price = 25.0 KDA)
 
 ## Contracts and Governance
-- **token contract**: Governance by a multi-sig... And after some days/week govenrnance will completely be disabled and crontract locked.
-- **pre-sales contract**: Governance by a multi-sig... Temporary contract. Will have no more usage after and of pre-sales.
+- **token contract**: Governance by a multi-sig... And after some days/weeks governance will completely be disabled and contract locked.
+- **pre-sales contract**: Governance by a multi-sig... Temporary contract. Will have no more usage after pre-sales.
 - **public-treasury contract**: Governance by a multi-sig. There is no plan to lock the governance... Allowing to upgrade treasury management's policy.
