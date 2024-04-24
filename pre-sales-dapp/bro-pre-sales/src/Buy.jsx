@@ -85,6 +85,11 @@ function result_to_msg(r)
 function BuySideBarContent()
 {
   const {data:sales_acct} = useLocalPactImmutable(`${MOD}.SALES-ACCOUNT`, NETWORK, CHAIN);
+  const {data:_amount_per_batch} = useLocalPactImmutable(`${MOD}.AMOUNT-PER-BATCH`, NETWORK, CHAIN)
+  const {data:_price_per_batch} = useLocalPactImmutable(`${MOD}.PRICE-PER-BATCH`, NETWORK, CHAIN)
+  const amount_per_batch = _to_decimal(_amount_per_batch)
+  const price_per_batch = _to_decimal(_price_per_batch)
+
   const [wallet, setWallet] = useState("CW")
   const [account, setAccount] = useState("")
   const [signProcessing, setSignProcessing] = useState(false)
@@ -166,7 +171,7 @@ function BuySideBarContent()
                                           </div>
 
   return <>
-          <h1 className="my-0 text-center">Buy your $BRO: 0.4 $BRO for 10.0 KDA</h1>
+          <h1 className="my-0 text-center">Buy your $BRO: {amount_per_batch.toFixed(1)} $BRO for {price_per_batch.toFixed(1)} KDA</h1>
           <Divider />
           <Panel header="Important Notes" className="p-0 m-3">
             <ul className="py-0 m-0">

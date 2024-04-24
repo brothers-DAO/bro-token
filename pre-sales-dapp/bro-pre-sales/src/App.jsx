@@ -7,6 +7,7 @@ import { Panel } from 'primereact/panel';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 
+import {Decimal} from 'decimals'
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
 import 'primereact/resources/primereact.min.css'; //core css
 import 'primeicons/primeicons.css'; //icons
@@ -16,6 +17,8 @@ import './App.css';
 import {useLocalPact, useLocalPactImmutable} from './pact';
 
 import {BuySideBar} from './Buy.jsx';
+
+const _to_decimal = v => v?(v.dec?Decimal(v.dec):Decimal(v)):Decimal(0)
 
 const NETWORK = import.meta.env.VITE_NETWORK
 const CHAIN = import.meta.env.VITE_CHAIN
@@ -134,7 +137,10 @@ function Reservations()
 function Sales()
 {
   const {data} = useLocalPact(`(${MOD}. get-sales)`, NETWORK, CHAIN)
-  const reserv = data?data.map(({account,bought}) => ({account:account, amount: (bought.int*0.2).toString(), bought:bought.int.toString()})):null;
+  const {data:_amount_per_batch} = useLocalPactImmutable(`${MOD}.AMOUNT-PER-BATCH`, NETWORK, CHAIN)
+  const amount_per_batch = _to_decimal(_amount_per_batch)
+
+  const reserv = data?data.map(({account,bought}) => ({account:account, amount:amount_per_batch.mul(bought.int).toString(), bought:bought.int.toString()})):null;
 
   return <Panel header="Sold batches" toggleable>
           <DataTable value={reserv} tableStyle={{ minWidth: '30rem' }}  paginator rows={10}>
