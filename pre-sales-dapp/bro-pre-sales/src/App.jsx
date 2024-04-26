@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Timeline } from 'primereact/timeline';
 import { Card } from 'primereact/card';
@@ -7,6 +7,7 @@ import { Panel } from 'primereact/panel';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Image } from 'primereact/image';
+import { Menu } from 'primereact/menu';
 
 import {Decimal} from 'decimals'
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
@@ -25,6 +26,7 @@ const _to_decimal = v => v?(v.dec?Decimal(v.dec):Decimal(v)):Decimal(0)
 
 const NETWORK = import.meta.env.VITE_NETWORK
 const CHAIN = import.meta.env.VITE_CHAIN
+const ENDPOINT = import.meta.env.VITE_ENDPOINT
 const NS = import.meta.env.VITE_NS
 const MOD = NS + ".bro-pre-sales"
 
@@ -156,8 +158,27 @@ function Sales()
 
 
 const GHButton = () => <a style={{ fontSize: '1.6rem' }} href="https://github.com/CryptoPascal31/bro-token" target="_blank" rel=" noopener noreferrer" className="mx-1 no-underline p-button-rounded p-button-raised p-button-outlined p-button-text pi pi-github p-button p-button-icon-only" />
+const TwitterButton = () => <a style={{ fontSize: '1.6rem' }} href={import.meta.env.VITE_TWITTER} target="_blank" rel=" noopener noreferrer" className="mx-1 no-underline p-button-rounded p-button-raised p-button-outlined p-button-text pi pi-twitter p-button p-button-icon-only" />
 const InfoButton = () => <a style={{ fontSize: '1.6rem' }} href="https://github.com/CryptoPascal31/bro-token/blob/main/README.md" target="_blank" rel="noopener noreferrer" className="mx-1  no-underline p-button-rounded p-button-raised p-button-outlined p-button-text pi pi-info-circle p-button p-button-icon-only" />
 
+function SmartContractButton()
+{
+  const menu = useRef(null);
+  const view_module = (mod) => `https://balance.chainweb.com/modules.html?server=${ENDPOINT}&module=${NS}.${mod}&chain=${CHAIN}`
+  const build_menu_item = ([name, mod]) => ({label:name+ " module", icon:'pi pi-file-check', target:"_blank", url:view_module(mod)});
+
+  const items = [
+        {
+            label: 'Kadena modules',
+            items: [['Token', 'bro'], ['Pre-Sales', 'bro-pre-sales'], ['Treasury', 'bro-treasury']].map(build_menu_item)
+        }
+    ];
+
+    return  <div className="card flex justify-content-center">
+            <Menu model={items} popup ref={menu} id="popup_menu_left" />
+            <Button size="small" text raised label="Contracts" icon="pi pi-folder-open" onClick={(event) => menu.current.toggle(event)}/>
+            </div>
+}
 
 function BuyButton()
 {
@@ -172,7 +193,7 @@ function App() {
   return (
     <div className="flex flex-column row-gap-4">
       <Toolbar className="shadow-4 border-round-3xl"
-               start={<> <GHButton /> <InfoButton /> </>}
+               start={<> <GHButton /> <TwitterButton /> <InfoButton /> <SmartContractButton /></>}
                center={<div className="flex text-5xl font-bold"> <Image src={LOGO} height="48" className="mt-0"/>&nbsp; $BRO Pre-Sales &nbsp; <Image src={LOGO} height="48" className="mt-0"/></div>}
                end={<div className="font-italic text-xs text-right"> {NETWORK} / chain {CHAIN} <br /> {NS}</div>} />
       <div className="flex flex-row gap-2 ">
