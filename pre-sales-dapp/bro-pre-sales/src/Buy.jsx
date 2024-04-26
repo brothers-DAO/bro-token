@@ -176,7 +176,8 @@ function BuySideBarContent()
           <Panel header="Important Notes" className="p-0 m-3">
             <ul className="py-0 m-0">
               <li className="mb-2"> If your wallet supports WalletConnect (Linx, Koala, Ecko Mobile), you can directly and easily buy using the TG bot. </li>
-              <li> After buying during pre-sales, as stated by the Smart-Contract, you will receive your $BRO tokens after launch. In the meantime, you can check on this frontend that your order has been recorded in the &quot;Sold batches&quot; panel. </li>
+              <li className="mb-2"> After buying during pre-sales, as stated by the Smart-Contract, you will receive your $BRO tokens after launch. In the meantime, you can check on this frontend that your order has been recorded in the &quot;Sold batches&quot; panel. </li>
+              <li> This is a 100% community coin. 100% of the pre-sales incomes will be invested in liquidity in EckoDEX. Issuers don't make profits. This is enforced by a multi-sig Smart Contract.</li>
             </ul>
           </Panel>
           <Fieldset legend="Wallet" className="py-0">
