@@ -6,6 +6,7 @@ import { Toolbar } from 'primereact/toolbar';
 import { Panel } from 'primereact/panel';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { Image } from 'primereact/image';
 
 import {Decimal} from 'decimals'
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme
@@ -17,6 +18,8 @@ import './App.css';
 import {useLocalPact, useLocalPactImmutable} from './pact';
 
 import {BuySideBar} from './Buy.jsx';
+import LOGO from './assets/BRO_64_64.png';
+
 
 const _to_decimal = v => v?(v.dec?Decimal(v.dec):Decimal(v)):Decimal(0)
 
@@ -168,9 +171,9 @@ function BuyButton()
 function App() {
   return (
     <div className="flex flex-column row-gap-4">
-      <Toolbar className="shadow-4 border-round-xl"
+      <Toolbar className="shadow-4 border-round-3xl"
                start={<> <GHButton /> <InfoButton /> </>}
-               center={<div className="flex text-3xl font-bold"> $BRO Pre-Sales </div>}
+               center={<div className="flex text-5xl font-bold"> <Image src={LOGO} height="48" className="mt-0"/>&nbsp; $BRO Pre-Sales &nbsp; <Image src={LOGO} height="48" className="mt-0"/></div>}
                end={<div className="font-italic text-xs text-right"> {NETWORK} / chain {CHAIN} <br /> {NS}</div>} />
       <div className="flex flex-row gap-2 ">
 
