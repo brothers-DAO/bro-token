@@ -92,6 +92,7 @@ function BuySideBarContent()
 
   const [wallet, setWallet] = useState("CW")
   const [account, setAccount] = useState("")
+  const [sent, setSent] = useState(false)
   const [signProcessing, setSignProcessing] = useState(false)
   const msgs_a = useRef(null);
   const msgs_pf = useRef(null);
@@ -154,6 +155,7 @@ function BuySideBarContent()
   const doStatus = cmd => { if(!cmd)
                               return;
                             setSignProcessing(true);
+                            setSent(true);
                             msgs_trx.current?.show(WAITING_FOR_TRANSACTION);
                             return status(cmd, NETWORK, CHAIN).then(x => {console.log(x); msgs_trx.current?.show(result_to_msg(x.result))})
                                                               .catch(() => msgs_trx.current?.show(POLL_ERROR))
@@ -171,6 +173,7 @@ function BuySideBarContent()
                                           </div>
 
   const BroBotLink = () =>  <a href={import.meta.env.VITE_BRO_BOT} target="_blank"> Bro BOT </a>
+
   return <>
           <h1 className="my-0 text-center">Buy your $BRO: {amount_per_batch.toFixed(1)} $BRO for {price_per_batch.toFixed(1)} KDA</h1>
           <Divider />
@@ -197,7 +200,7 @@ function BuySideBarContent()
           </div>
           <Messages ref={msgs_a} />
           <Messages ref={msgs_pf} />
-          <Button className="mt-2" disabled={pf_result==null || signProcessing} onClick={onSignClick} loading={signProcessing} label="Sign and Submit" />
+          <Button className="mt-2" disabled={pf_result==null || signProcessing || sent} onClick={onSignClick} loading={signProcessing} label="Sign and Submit" />
 
           <Messages ref={msgs_trx} />
         </>
