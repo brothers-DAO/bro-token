@@ -178,7 +178,7 @@
       ; Increment the global counters
       (with-read global-counters "" {'sold:=sold, 'reserved:=global-reserved}
         (update global-counters "" {'sold: (++ sold),
-                                 'reserved: (- global-reserved reserved)})))
+                                    'reserved: (- global-reserved reserved)})))
 
     ; Create the BRO account if it doesn't exist
     (if (not? (bro-account-exist) account)
