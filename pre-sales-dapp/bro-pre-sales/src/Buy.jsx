@@ -170,14 +170,16 @@ function BuySideBarContent()
                                             <label className={disabled?"font-light ml-2 line-through":"ml-2"}>{display}</label>
                                           </div>
 
+  const BroBotLink = () =>  <a href={import.meta.env.VITE_BRO_BOT} target="_blank"> Bro BOT </a>
   return <>
           <h1 className="my-0 text-center">Buy your $BRO: {amount_per_batch.toFixed(1)} $BRO for {price_per_batch.toFixed(1)} KDA</h1>
           <Divider />
           <Panel header="Important Notes" className="p-0 m-3">
             <ul className="py-0 m-0">
-              <li className="mb-2"> If your wallet supports WalletConnect (Linx, Koala, Ecko Mobile), you can directly and easily buy using the TG bot. </li>
+              <li className="mb-2"> If your wallet supports WalletConnect (Linx, Koala, Ecko Mobile), you can directly and easily buy using the <BroBotLink />  </li>
               <li className="mb-2"> After buying during pre-sales, as stated by the Smart-Contract, you will receive your $BRO tokens after launch. In the meantime, you can check on this frontend that your order has been recorded in the &quot;Sold batches&quot; panel. </li>
-              <li> This is a 100% community coin. 100% of the pre-sales incomes will be invested in liquidity in EckoDEX. Issuers don't make profits. This is enforced by a multi-sig Smart Contract.</li>
+              <li className="mb-2"> This is a 100% community coin. 100% of the pre-sales incomes will be invested in liquidity in EckoDEX. Issuers don't make profits. This is enforced by a multi-sig Smart Contract.</li>
+              <li> You can immediately add the token address into your wallet: <span style={{fontFamily: "monospace"}}>{NS}.bro</span> </li>
             </ul>
           </Panel>
           <Fieldset legend="Wallet" className="py-0">
