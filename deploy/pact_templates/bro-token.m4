@@ -2,10 +2,8 @@
 (namespace "BRO_NS")
 
 include(bro-token.pact)dnl
-(BRO_NS.bro.enforce-is-deployed-chain (chain-id))
 "Module loaded"
-
-
+(BRO_NS.bro.enforce-is-deployed-chain (chain-id))
 
 ifdef(`__INIT__',dnl
 (create-table user-accounts-table)
