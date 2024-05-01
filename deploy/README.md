@@ -30,7 +30,12 @@ Check data file in Makefile
 
 ## Init namespaces and keys
 
-kda gen -t tkpl/init.tkpl -d testnet/mainnet.yaml
+On main chain => use init_main_chain.tkpl
+kda gen -t tkpl/init_main_chain.tkpl -d testnet/mainnet.yaml
+
+On others chains => use init_other_chains.tkpl
+kda gen -t tkpl/init_main_chain.tkpl -d testnet/mainnet.yaml
+
 kda sign tx.yaml -k ....
 
 kda local tx.yaml

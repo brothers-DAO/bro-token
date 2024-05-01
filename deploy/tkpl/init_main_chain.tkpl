@@ -1,0 +1,58 @@
+# For Running this one, you have to make sure we are on the main chain
+
+code: |
+  (define-namespace "{{bro-ns}}" (read-keyset 'ns-ks) (read-keyset 'ns-ks))
+  (namespace "{{bro-ns}}")
+
+  ; => This is the general governance keyset
+  (define-keyset "{{bro-ns}}.governance" (read-keyset 'gov-ks))
+
+  ; => This is the Bot Keyset (allow to tip and register accounts)
+  (define-keyset "{{bro-ns}}.bot" (read-keyset 'bot-ks))
+
+  ; => This is temporary key for managing sales
+  (define-keyset "{{bro-ns}}.sales-operator" (read-keyset 'sales-ks))
+
+  ; => This is the community Keyset for managing community donations
+  (define-keyset "{{bro-ns}}.community" (read-keyset 'community-ks))
+
+  ; This account is used for paying the gas for the bot
+  (coin.create-account "r:{{bro-ns}}.bot" (keyset-ref-guard "{{bro-ns}}.bot"))
+
+data:
+  ns-ks:
+    - {{ns-key}}
+  gov-ks:
+    - {{bro-gov-key}}
+
+  sales-ks:
+    pred: keys-any
+    keys:
+      - {{bro-sales-key}}
+      - {{bro-gov-key-1}}
+
+  bot-ks:
+    pred: keys-any
+    keys:
+      - {{bot-key}}
+      - {{bro-gov-key-1}}
+
+  community-ks:
+      - {{bro-community-key}}
+
+publicMeta:
+  chainId: "{{chain}}"
+  sender: {{gas-payer}}
+  gasLimit: 2000
+  gasPrice: 0.00000001
+  ttl: 7200
+
+networkId: {{network}}
+signers:
+  - public: {{ns-key}}
+    caps: []
+  - public: {{gas-payer-key}}
+    caps:
+      - name: coin.GAS
+        args: []
+type: exec

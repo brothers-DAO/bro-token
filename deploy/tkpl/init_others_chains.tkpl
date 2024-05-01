@@ -1,24 +1,17 @@
+# For Running this one, you have to make sure we are not on the main chain
+
+
 code: |
   (define-namespace "{{bro-ns}}" (read-keyset 'ns-ks) (read-keyset 'ns-ks))
   (namespace "{{bro-ns}}")
   (define-keyset "{{bro-ns}}.governance" (read-keyset 'gov-ks))
-  (define-keyset "{{bro-ns}}.bot" (read-keyset 'bot-ks))
-  (define-keyset "{{bro-ns}}.sales-operator" (read-keyset 'sales-ks))
-
 
 data:
   ns-ks:
     - {{ns-key}}
+
   gov-ks:
     - {{bro-gov-key}}
-  sales-ks:
-    - {{bro-sales-key}}
-  bot-ks:
-    pred: keys-any
-    keys:
-      - 567715f94e4d57581325a4698ad9d1fdc19e30b47478ea72ce54a29a966ef1ac
-      - b86523eb19ab4185922848e60e7da86177ad17dff5a47c71c28e2ea12f6b9cc9
-      - 0cca62db99d636a39aa55e83be26efc88e32c9b42e5a5b4cf7932671cac2b7bf
 
 publicMeta:
   chainId: "{{chain}}"
