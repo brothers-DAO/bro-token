@@ -14,7 +14,8 @@ TRANSACTION_FILES = bro-registry \
                     bro-token \
                     bro-pre-sales \
                     bro-treasury \
-                    post-init
+                    post-init \
+                    launch
 
 
 all: yaml
