@@ -34,7 +34,8 @@ data:
   bot-ks:
     pred: keys-any
     keys:
-      - {{bot-key}}
+      - {{bot-key-1}}
+      - {{bot-key-2}}
       - {{bro-gov-key-1}}
 
   community-ks:
