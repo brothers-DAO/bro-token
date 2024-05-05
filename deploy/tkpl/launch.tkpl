@@ -1,0 +1,37 @@
+code: |
+  (enforce ({{bro-ns}}.bro.is-supply-chain) "Only on supply chain")
+  ({{bro-ns}}.bro-pre-sales.end-sales)
+  ({{bro-ns}}.bro-treasury.init-liquidity)
+
+publicMeta:
+  chainId: "{{chain}}"
+  sender: {{gas-payer}}
+  gasLimit: 149000
+  gasPrice: 0.00000001
+  ttl: 86400
+## Don't forget to update the creation time according to launch time
+  creationTime: 1514903060
+networkId: {{network}}
+
+signers:
+  - public: {{bro-gov-key-1}}
+    caps:
+      - name: {{bro-ns}}.bro-treasury.INIT
+        args: []
+
+  - public: {{bro-gov-key-2}}
+    caps:
+      - name: {{bro-ns}}.bro-treasury.INIT
+        args: []
+
+  - public: {{bro-sales-key}}
+    caps:
+      - name: {{bro-ns}}.bro-pre-sales.SALES-OPERATOR
+        args: []
+
+  - public: {{gas-payer-key}}
+    caps:
+      - name: coin.GAS
+        args: []
+
+type: exec

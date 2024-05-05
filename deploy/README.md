@@ -12,6 +12,8 @@ Check intial chain
 
 Check pre-sales dates
 
+Update creationTime in launch.tkpl accordingly to launch date.
+
 ### Namespaces
 
 Modify namespace in testnet.yaml or mainnet.yaml
