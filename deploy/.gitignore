@@ -1,3 +1,5 @@
 tx*.json
 tx*.yaml
 .pact
+testnet_ecko
+keys
