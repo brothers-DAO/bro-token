@@ -1,6 +1,3 @@
-# For Running this one, you have to make sure we are not on the main chain
-
-
 code: |
   (define-namespace "{{bro-ns}}" (read-keyset 'ns-ks) (read-keyset 'ns-ks))
   (namespace "{{bro-ns}}")
@@ -14,7 +11,7 @@ data:
     - {{bro-gov-key}}
 
 publicMeta:
-  chainId: "{{chain}}"
+  chainId: "{{chain-other}}"
   sender: {{gas-payer}}
   gasLimit: 2000
   gasPrice: 0.00000001

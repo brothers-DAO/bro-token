@@ -1,0 +1,30 @@
+code: |
+  (define-namespace "{{bro-ns}}" (read-keyset 'ks) (read-keyset 'ks))
+  (define-keyset "{{bro-ns}}.governance" (read-keyset 'ks))
+
+data:
+  ks:
+    pred: keys-2
+    keys:
+      - {{bro-gov-key-1}}
+      - {{bro-gov-key-2}}
+      - {{bro-gov-key-3}}
+
+publicMeta:
+  chainId: "{{chain}}"
+  sender: {{gas-payer}}
+  gasLimit: 1000
+  gasPrice: 0.00000001
+  ttl: 7200
+
+networkId: {{network}}
+signers:
+  - public: {{ns-key}}
+    caps: []
+  - public: {{bro-gov-key}}
+    caps: []
+  - public: {{gas-payer-key}}
+    caps:
+      - name: coin.GAS
+        args: []
+type: exec

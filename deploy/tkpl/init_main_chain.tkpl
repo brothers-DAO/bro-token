@@ -22,6 +22,7 @@ code: |
 data:
   ns-ks:
     - {{ns-key}}
+
   gov-ks:
     - {{bro-gov-key}}
 
@@ -39,7 +40,11 @@ data:
       - {{bro-gov-key-1}}
 
   community-ks:
-      - {{bro-community-key}}
+      pred: keys-2
+      keys:
+        - {{bro-community-key-1}}
+        - {{bro-community-key-2}}
+        - {{bro-community-key-3}}
 
 publicMeta:
   chainId: "{{chain}}"

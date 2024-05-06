@@ -1,0 +1,45 @@
+network: mainnet01
+chain: "2"
+
+# For rotation
+#chain: ["0", "1"," 2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16","17", "18","19"]
+
+chain-other: ["0", "1", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16","17", "18","19"]
+
+gas-payer: util-lib-deployer-new
+gas-payer-key: 9a7008dc022e14c8421dac1ebf5b7f409f56a7dcc31ccba8f20e5ee39c37be6d
+
+# Namespace
+# ----------
+bro-ns: n_582fed11af00dc626812cd7890bb88e72067f28c
+
+# Temporary parameter during first creation
+# -----------------------------------------
+ns-key: 13aa87e09780ff2542bb22b5ee7cf91e3e80f65fea7bad0912b422ea3613d62b
+bro-gov-key: d21026c0712afb798e00424d5ef7074655a81777041c785a9e00450abace8d33
+
+# Sales key
+# ---------
+bro-sales-key: 875995c4ff1c2a0cd9dbdff5e791f58f6c38fdfbb22cfee44fca0185fb698197
+
+# Bots
+# ----
+bot-key-1: 4a65c34666fdf1a61845a640f9bc19416f52d3b3c5854ec4d534459f981b6c5a
+bot-key-2: 5c9351744df0fdad7687fc43a46f2a38e2a85baa6bae0f3de2a6b4d57bb7408e
+
+# Final parmaeters
+# -----------------
+# - Pascal
+bro-gov-key-1: b431b3ce5ff099832f150450c5903fb40f07ca3176618a8e26545011c1d14588
+# - Penguin 007
+bro-gov-key-2: 01d61ff6da0c535779cabcd4fd2f00224769aab42ab3119ac587d84eba3e499c
+# - Number 5
+bro-gov-key-3: 1d1f766c6e378efaf753ed404e7e086a77e42f3e400d611a305b39b18ffdf57a
+
+
+# - Pascal
+bro-community-key-1: 9b7457c78e5af378544006ac709c5427367fb49034c420b83fc8f51692c85182
+# - Penguin 007
+bro-community-key-2: 442aa7877c1a5b4459c52cff621207abfe7a314404db8c727387d5c3c0655ab0
+# - Number 5
+bro-community-key-3: d365c83636ad78d6ead62edcd705486ef60ba64bacd968297116080263e28ca4

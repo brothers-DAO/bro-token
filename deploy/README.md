@@ -5,7 +5,7 @@
 ### Contract bro-token
 
 Check deployed chains
-Check intial chain
+Check initial chain
 
 
 ### Contract bro-pre-sales
@@ -32,16 +32,13 @@ Check data file in Makefile
 
 ## Init namespaces and keys
 
-On main chain => use init_main_chain.tkpl
-kda gen -t tkpl/init_main_chain.tkpl -d testnet/mainnet.yaml
+make init
 
-On others chains => use init_other_chains.tkpl
-kda gen -t tkpl/init_main_chain.tkpl -d testnet/mainnet.yaml
+kda sign tx_init_*.yaml -k ....
 
-kda sign tx.yaml -k ....
-
-kda local tx.yaml
-kda send tx.yaml
+kda local tx_init_0.json
+kda local tx_init_2.json
+kda send tx_init_*.json
 
 
 ## Contracts deployment
@@ -51,7 +48,7 @@ IS_INIT_CHAIN must be uncommented if we are working on main chain.
 
 Set the chain in testnet/mainnet.yaml
 
-run: make
+run: make all
 Then sign all the tx_bro...json
 
 Deploy first bro-registry and bro-token.
