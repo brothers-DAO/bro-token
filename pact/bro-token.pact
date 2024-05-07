@@ -20,7 +20,7 @@
   (defconst SUPPLY-CHAIN "2")
 
   ; All deployed chain
-  (defconst DEPLOYED-CHAINS ["1", "2"])
+  (defconst DEPLOYED-CHAINS ["1", "2", "8"])
 
   ;-----------------------------------------------------------------------------
   ; Schemas and Tables
