@@ -21,13 +21,13 @@
   (defconst PRICE-PER-BATCH:decimal 10.0)
 
   ; Dates must be adjusted before launch
-  (defconst PHASE-0-START (time "2024-05-07T06:00:00Z"))
+  (defconst PHASE-0-START (time "2024-05-07T18:00:00Z"))
 
-  (defconst PHASE-1-START (time "2024-05-14T06:00:00Z"))
+  (defconst PHASE-1-START (time "2024-05-14T18:00:00Z"))
 
-  (defconst PHASE-2-START (time "2024-05-17T06:00:00Z"))
+  (defconst PHASE-2-START (time "2024-05-17T18:00:00Z"))
 
-  (defconst END-OF-PRESALES (time "2024-05-21T06:00:00Z"))
+  (defconst END-OF-PRESALES (time "2024-05-21T18:00:00Z"))
 
   ;-----------------------------------------------------------------------------
   ; Dates functions to pre-sales phases
