@@ -41,6 +41,8 @@
   ;-----------------------------------------------------------------------------
   ; Constants (tips)
   ;-----------------------------------------------------------------------------
+  (defconst STARTING-TIME:time (time "2024-05-21T06:00:00Z"))
+
   (defconst TIP-AMOUNT:decimal 0.001)
 
   ; Maximum COUNT of tips per PER
@@ -161,6 +163,7 @@
 
   (defun tip:string (tg-account-enc:string)
     @doc "Tip a TG account"
+    (enforce (is-past STARTING-TIME) "Contract not started")
     (with-capability (TIPPING)
       (with-read tips-counters "" {'total:=old-total, 'cnt:=old-cnt, 'timer:=timer}
         ; The 10th tip must be older than NOW - TIPS-PER

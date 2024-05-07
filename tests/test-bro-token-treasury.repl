@@ -60,7 +60,7 @@
 ; Starts to tip
 (begin-tx)
 (use BRO_NS.bro-treasury)
-(env-chain-data {'block-time:(time "2024-05-01T00:00:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:00:00Z")})
 (env-data {'alice-ks:["alice-key"], 'bob-ks:["bob-key"]})
 
 ; Try without signature
@@ -80,7 +80,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:05:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:05:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -88,7 +88,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:10:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:10:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -96,7 +96,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:15:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:15:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -104,7 +104,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:20:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:20:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -112,7 +112,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:25:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:25:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -120,7 +120,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:30:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:30:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -128,7 +128,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:35:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:35:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -136,7 +136,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:40:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:40:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -144,7 +144,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:45:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:45:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -165,7 +165,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:50:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:50:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -173,7 +173,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T00:55:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T00:55:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -181,7 +181,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:00:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:00:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -189,7 +189,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:05:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:05:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -197,7 +197,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:10:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:10:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -205,7 +205,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:15:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:15:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -213,7 +213,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:20:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:20:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -221,7 +221,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:25:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:25:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -229,7 +229,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:30:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:30:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -237,7 +237,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:35:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:35:00Z")})
 (tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
@@ -247,7 +247,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:40:00Z")})
+(env-chain-data {'block-time:(time "2024-06-01T01:40:00Z")})
 (expect-failure "Too many tips" "Too many tips"
                 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
 (commit-tx)
@@ -257,7 +257,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-02T00:02:00Z")})
+(env-chain-data {'block-time:(time "2024-06-02T00:02:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -266,7 +266,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-02T00:03:00Z")})
+(env-chain-data {'block-time:(time "2024-06-02T00:03:00Z")})
 (expect-failure "Too many tips" "Too many tips"
                 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
 (commit-tx)
@@ -276,7 +276,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-02T00:12:00Z")})
+(env-chain-data {'block-time:(time "2024-06-02T00:12:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
