@@ -44,8 +44,8 @@
   (defconst TIP-AMOUNT:decimal 0.001)
 
   ; Maximum COUNT of tips per PER
-  (defconst TIPS-COUNT 10)
-  (defconst TIPS-PER (hours 1))
+  (defconst TIPS-COUNT 20)
+  (defconst TIPS-PER (hours 24))
 
   ; Using a defconst for the DEX key saves gas
   (defconst DEX-KEY (get-pair-key coin bro))
@@ -164,7 +164,7 @@
     (with-capability (TIPPING)
       (with-read tips-counters "" {'total:=old-total, 'cnt:=old-cnt, 'timer:=timer}
         ; The 10th tip must be older than NOW - TIPS-PER
-        (enforce (< (first timer) (from-now (- TIPS-PER))) "Too much tips in the last hour")
+        (enforce (< (first timer) (from-now (- TIPS-PER))) "Too many tips in the last period")
 
         ; Get the BRO account and transfer tip
         (let ((bro-account (get-bro-account tg-account-enc)))

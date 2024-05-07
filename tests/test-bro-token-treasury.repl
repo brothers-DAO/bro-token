@@ -159,22 +159,105 @@
 (expect-that "Tips cnt= 10"     (compose (at 'cnt) (= 10))     (get-tips-counters))
 (commit-tx)
 
-;Try to tip (but me have already tipped to much in the last hour)
-; Tip Bob 4
+
+
+; Tip Alice 8
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
 (env-chain-data {'block-time:(time "2024-05-01T00:50:00Z")})
-(expect-failure "Too much tips" "Too much tips"
-                (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
 (commit-tx)
 
-; Wait a little bit and we are able to tip again
+; Tip Alice 9
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T00:55:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 10
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:00:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 11
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:05:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 12
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:10:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 13
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:15:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 14
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:20:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 15
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:25:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 16
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:30:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+; Tip Alice 17
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-01T01:35:00Z")})
+(tip "enc_EI3cFxvCQlMHHwFgxupYkDRWX_SCYL4MyrCvSdqrKus")
+(commit-tx)
+
+
+;Try to tip (but me have already tipped to much in the last day)
 ; Tip Bob 4
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:02:00Z")})
+(env-chain-data {'block-time:(time "2024-05-01T01:40:00Z")})
+(expect-failure "Too many tips" "Too many tips"
+                (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
+(commit-tx)
+
+; Wait a little bit (1 day) and we are able to tip again
+; Tip Bob 4
+(begin-tx)
+(use BRO_NS.bro-treasury)
+(env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
+(env-chain-data {'block-time:(time "2024-05-02T00:02:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -183,8 +266,8 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:03:00Z")})
-(expect-failure "Too much tips" "Too much tips"
+(env-chain-data {'block-time:(time "2024-05-02T00:03:00Z")})
+(expect-failure "Too many tips" "Too many tips"
                 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw"))
 (commit-tx)
 
@@ -193,7 +276,7 @@
 (begin-tx)
 (use BRO_NS.bro-treasury)
 (env-sigs [{'key:"bot", 'caps:[(BRO_NS.bro-treasury.BOT-OPERATOR)]}])
-(env-chain-data {'block-time:(time "2024-05-01T01:07:00Z")})
+(env-chain-data {'block-time:(time "2024-05-02T00:12:00Z")})
 (tip "enc_aWOFvRevq4ogCA0qDeOCZ9eTWqdAguP3u0kKUST0Wrw")
 (commit-tx)
 
@@ -246,7 +329,7 @@
 (print "--------------------------------------\n")
 
 
-; We rougly have swapped 40 KDA, and rebalanced pair => (40 * 0.3%) = 0.12 KDA of income roughlt 0.048 BRO TOTAL INCOME
+; We rougly have swapped 40 KDA, and rebalanced pair => (40 * 0.3%) = 0.12 KDA of income roughly 0.048 BRO TOTAL INCOME
 (commit-tx)
 
 
@@ -259,7 +342,7 @@
 (env-data {'ks:["alice-key"]})
 
 (env-sigs [{'key:"bot", 'caps:[(OPERATE-DEX)]}])
-(expect "Treadury balance must be 20.0 - 0.001 * 12 (already tipped)" (- 20.0 (* 0.001 12.0)) (get-balance TREASURY-ACCOUNT))
+(expect "Treadury balance must be 20.0 - 0.001 * 12 (already tipped)" (- 20.0 (* 0.001 22.0)) (get-balance TREASURY-ACCOUNT))
 
 
 ; We expect to have thaered 0.048 $BRO
@@ -306,7 +389,7 @@
 
 (gather-rewards)
 
-(let ((initial-balance (- 20.0 (* 0.001 12.0))))
+(let ((initial-balance (- 20.0 (* 0.001 22.0))))
   (expect-that  "Treadury balance must be rougly 0.008 $BRO more" (compose (+ (- initial-balance))
                                                                       (between 0.0078 0.0082)) (get-balance TREASURY-ACCOUNT)))
 
