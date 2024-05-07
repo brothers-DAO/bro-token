@@ -126,7 +126,7 @@
 ; Sales Phase 0
 (begin-tx)
 (use BRO_NS.bro-pre-sales)
-(env-chain-data {'block-time:(time "2024-04-02T00:00:00Z")})
+(env-chain-data {'block-time:(time "2024-05-08T00:00:00Z")})
 
 (env-sigs [{'key:"sales", 'caps:[(SALES-OPERATOR)]}])
 
@@ -243,7 +243,7 @@
 ; Sales Phase 1
 (begin-tx)
 (use BRO_NS.bro-pre-sales)
-(env-chain-data {'block-time:(time "2024-04-09T00:00:00Z")})
+(env-chain-data {'block-time:(time "2024-05-15T00:00:00Z")})
 
 ; We should have still 10 available sales
 (expect "10 batches avauilable" 10 (available-for-free-sales))
@@ -372,7 +372,7 @@
 ; Sales Phase 2
 (begin-tx)
 (use BRO_NS.bro-pre-sales)
-(env-chain-data {'block-time:(time "2024-04-16T00:00:00Z")})
+(env-chain-data {'block-time:(time "2024-05-18T00:00:00Z")})
 
 ; Now we should have 50 available:
 (expect "50 batches avauilable" 50 (available-for-free-sales))
@@ -551,7 +551,7 @@
 (use BRO_NS.bro-pre-sales)
 (use BRO_NS.bro)
 
-(env-chain-data {'block-time:(time "2024-04-23T00:00:00Z")})
+(env-chain-data {'block-time:(time "2024-05-22T00:00:00Z")})
 (env-sigs [{'key:"sales", 'caps:[(SALES-OPERATOR)]}])
 
 ; Gas Usage
