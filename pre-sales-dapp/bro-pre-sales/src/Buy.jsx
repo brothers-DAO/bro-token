@@ -15,7 +15,7 @@ import {Pact} from '@kadena/client'
 import YAML from 'yaml'
 
 const _to_key = g => g?.keys?.[0] ?? ""
-const _to_decimal = v => v?(v.dec?Decimal(v.dec):Decimal(v)):Decimal(0)
+const _to_decimal = v => v?(v.decimal?Decimal(v.decimal):Decimal(v)):Decimal(0)
 const dec = (x) => ({"decimal":x.toString()})
 
 const NETWORK = import.meta.env.VITE_NETWORK
