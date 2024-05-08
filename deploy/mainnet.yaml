@@ -2,12 +2,12 @@ network: mainnet01
 chain: "2"
 
 # For rotation
-#chain: ["0", "1"," 2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16","17", "18","19"]
+#chain: ["0", "1","2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16","17", "18","19"]
 
 chain-other: ["0", "1", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16","17", "18","19"]
 
 gas-payer: util-lib-deployer-new
-gas-payer-key: 9a7008dc022e14c8421dac1ebf5b7f409f56a7dcc31ccba8f20e5ee39c37be6d
+gas-payer-key: ce0bc52493dd69b2325b56565b099865f7e6cb007523d27b5f166d21b1aaabe5
 
 # Namespace
 # ----------
@@ -25,7 +25,7 @@ bro-sales-key: 875995c4ff1c2a0cd9dbdff5e791f58f6c38fdfbb22cfee44fca0185fb698197
 # Bots
 # ----
 bot-key-1: 4a65c34666fdf1a61845a640f9bc19416f52d3b3c5854ec4d534459f981b6c5a
-bot-key-2: 5c9351744df0fdad7687fc43a46f2a38e2a85baa6bae0f3de2a6b4d57bb7408e
+bot-key-2: d4e080fbe244099abfebdad2ed56c46bdd199e8b35644b6b199100dc293c2db6
 
 # Final parmaeters
 # -----------------
