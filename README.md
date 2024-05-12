@@ -41,7 +41,7 @@ The reservation is possible and must be paid until the end of Phase 1.
 
 Only reserved batches can be bought.
 
-#### Pre-sales Phase 1 (until Date 2024-05-14T18:00:00Z)
+#### Pre-sales Phase 1 (until Date 2024-05-17T18:00:00Z)
 
 The sales are limited to 1 Batch per account.
 
