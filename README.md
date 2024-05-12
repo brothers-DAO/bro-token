@@ -4,6 +4,12 @@
 
 `n_582fed11af00dc626812cd7890bb88e72067f28c.bro`
 
+## Pre-sales frontend
+
+The pre-sales frontend is hosted here:
+
+[https://bro-presales.surge.sh](https://bro-presales.surge.sh)
+
 ## Main characteristics.
 
 Low limited supply: **100.0 $BRO** in total
