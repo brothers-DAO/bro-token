@@ -35,7 +35,7 @@ function submit(cmd)
 function status(cmd, network, chain)
 {
   return client.pollStatus({requestKey:cmd.hash, chainId:chain , networkId: network},
-                           {timeout:1000*180, interval:5000})
+                           {timeout:1000*300, interval:5000})
                .then( x=> x?.[cmd.hash])
 }
 
