@@ -126,6 +126,8 @@ function DashBoardPanel()
 
 }
 
+const onSortAccount = ({data, order}) => data.sort( (x,y) => (x.account < y.account) ? order : -order)
+
 function Reservations()
 {
   const {data} = useLocalPact(`(${MOD}.get-reservations)`, NETWORK, CHAIN)
@@ -133,7 +135,7 @@ function Reservations()
 
   return <Panel header="Reservations" toggleable collapsed>
           <DataTable value={reserv} tableStyle={{ minWidth: '30rem' }} paginator rows={5}>
-            <Column field="account" headerClassName="text-xs"  header="Account" sortable className="text-xs" style={{ width: '75%', fontFamily:"monospace" }}></Column>
+            <Column field="account" headerClassName="text-xs"  header="Account" filter sortable sortFunction={onSortAccount} className="text-xs" style={{ width: '75%', fontFamily:"monospace" }}></Column>
             <Column field="reserved" headerClassName="text-xs"  header="Qty" style={{ width: '25%', fontFamily:"monospace" }}></Column>
           </DataTable>
           </Panel>
@@ -149,7 +151,7 @@ function Sales()
 
   return <Panel header="Sold batches" toggleable>
           <DataTable value={reserv} tableStyle={{ minWidth: '30rem' }}  paginator rows={10}>
-            <Column field="account" headerClassName="text-xs" header="Account" sortable className="text-xs" style={{ width: '75%', fontFamily:"monospace" }}></Column>
+            <Column field="account" headerClassName="text-xs" header="Account" filter sortable  sortFunction={onSortAccount} className="text-xs" style={{ width: '75%', fontFamily:"monospace" }}></Column>
             <Column field="bought" headerClassName="text-xs"  header="Qty" sortable style={{ width: '12%', fontFamily:"monospace" }}></Column>
             <Column field="amount" headerClassName="text-xs"  header="$BRO Amount" style={{ width: '13%', fontFamily:"monospace" }}></Column>
           </DataTable>
