@@ -79,7 +79,7 @@ bot knows the password that can associate a TG account to a $BRO account.
 
 $BRO is mined by tipping. Tips can be obtained in Brothers TG group by doing KCP
 (KCP means Kadena Culture Production = Producing original Meme).
-The tip amount is **1 GiDoug** (**0.001 $BRO**). To limit inflation, the smart-contract enforces a maximum of 10 tips / hour.
+The tip amount is **1 GiDoug** (**0.001 $BRO**). To limit inflation, the smart-contract enforces a maximum of 20 tips / day.
 
 Tips are paid from the *Public Treasury*.
 
@@ -111,10 +111,12 @@ Earned DEX fees are automatically:
 ### Accounts (chain 2)
 - **Pre-sales account ($BRO)**: `c:Qi4upvWMxGhezfOLjGSTKnWxrtIZPf4HfBGmDtJSMZ4` **[BRO](https://explorer.chainweb.com/mainnet/account/c:Qi4upvWMxGhezfOLjGSTKnWxrtIZPf4HfBGmDtJSMZ4?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
 - **Pre-sales account (KDA)**: `c:ZmIEJnDzYCQMKtqSgPdF-YUr9YsNznQNOTPmuWoX6XM` **[KDA](https://explorer.chainweb.com/mainnet/account/c:ZmIEJnDzYCQMKtqSgPdF-YUr9YsNznQNOTPmuWoX6XM?token=coin)**
-- **Treasury liquidity account (KDA,$BRO and Ecko liquidity tokens)**: `c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs` **[KDA](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=coin)** /  **[BRO](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
-- **Main Treasury account ($BRO)**: `c:97hM74MQUX0nbNCiQVobw1P8LPWLQP1Zqq6F9-NHtqY` **[BRO](https://explorer.chainweb.com/mainnet/account/c:97hM74MQUX0nbNCiQVobw1P8LPWLQP1Zqq6F9-NHtqY?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
+- **Treasury liquidity account (KDA,$BRO and Ecko liquidity tokens)**: `c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs` **[KDA](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=coin)** /  **[BRO](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)** / **[KDA-BRO LP](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(kaddex.tokens.get-balance%20%22coin%3An_582fed11af00dc626812cd7890bb88e72067f28c.bro%22%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22c%3AJ9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs%22))**
+
 - **Bot Gas (KDA)**: `r:n_582fed11af00dc626812cd7890bb88e72067f28c.bot` **[KDA](https://explorer.chainweb.com/mainnet/account/r:n_582fed11af00dc626812cd7890bb88e72067f28c.bot?token=coin)**
 - **Community Donation account**: `r:n_582fed11af00dc626812cd7890bb88e72067f28c.community` **[BRO](https://explorer.chainweb.com/mainnet/account/r:n_582fed11af00dc626812cd7890bb88e72067f28c.community?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
+- **EckoDEX Pool**: `P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc` **[KDA](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=coin)** / **[BRO](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
+
 
 ### Keysets (chain 2)
 - **Governance**: `n_582fed11af00dc626812cd7890bb88e72067f28c.governance` **[View-On-chain](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(describe-keyset%20%22n_582fed11af00dc626812cd7890bb88e72067f28c.governance%22))**
