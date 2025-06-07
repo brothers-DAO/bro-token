@@ -1,6 +1,9 @@
 (module bro GOVERNANCE
   (implements fungible-v2)
   (implements fungible-xchain-v1)
+  (bless "K6jvJ1tK7oEKfT94__-1ZiPHbPu6FhczHlKip0kYubc")
+  (bless "p5ZeApLc2849bpOw8_yx4Ha6QUeyMIvX7E-0a8_95jQ")
+  (bless "uZSaruhnuzCqV1mJs3g2MmQIvuJOC9acr29TzemtLx4")
 
   (use free.util-fungible)
   (use free.util-chain-data)
