@@ -85,7 +85,7 @@ Tips are paid from the *Public Treasury*.
 
 ## Liquidity Management + Self pumping
 The Liquidity reserved **40.0 $BRO** + KDA income from pre-sales (expected 1000.0 KDA) are owned by the Smart Contract (= the community).
-There are 100% deployed on eckoDex for liquidity.
+There are 100% deployed on Merctaus (previously EckoDEX) for liquidity.
 
 Earned DEX fees are automatically:
 * **$BRO**: Transferred to the *Public Treasury* (to be used as future tips)
@@ -112,18 +112,23 @@ Earned DEX fees are automatically:
 - **Pre-sales account ($BRO)**: `c:Qi4upvWMxGhezfOLjGSTKnWxrtIZPf4HfBGmDtJSMZ4` **[BRO](https://explorer.chainweb.com/mainnet/account/c:Qi4upvWMxGhezfOLjGSTKnWxrtIZPf4HfBGmDtJSMZ4?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
 - **Pre-sales account (KDA)**: `c:ZmIEJnDzYCQMKtqSgPdF-YUr9YsNznQNOTPmuWoX6XM` **[KDA](https://explorer.chainweb.com/mainnet/account/c:ZmIEJnDzYCQMKtqSgPdF-YUr9YsNznQNOTPmuWoX6XM?token=coin)**
 - **Main Treasury account ($BRO)**: `c:97hM74MQUX0nbNCiQVobw1P8LPWLQP1Zqq6F9-NHtqY` **[BRO](https://explorer.chainweb.com/mainnet/account/c:97hM74MQUX0nbNCiQVobw1P8LPWLQP1Zqq6F9-NHtqY?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
-- **Treasury liquidity account (KDA,$BRO and Ecko liquidity tokens)**: `c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs` **[KDA](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=coin)** /  **[BRO](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)** / **[KDA-BRO LP](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(kaddex.tokens.get-balance%20%22coin%3An_582fed11af00dc626812cd7890bb88e72067f28c.bro%22%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22c%3AJ9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs%22))**
+- **Treasury liquidity account (KDA,$BRO and Mercatus liquidity tokens)**: `c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs` **[KDA](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=coin)** /  **[BRO](https://explorer.chainweb.com/mainnet/account/c:J9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)** / **[KDA-BRO LP](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(kaddex.tokens.get-balance%20%22coin%3An_582fed11af00dc626812cd7890bb88e72067f28c.bro%22%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22c%3AJ9WSVPzUCrwmz9B3iexkGZPquLv4GODtFB_MQ98_MHs%22))**
 
 - **Bot Gas (KDA)**: `r:n_582fed11af00dc626812cd7890bb88e72067f28c.bot` **[KDA](https://explorer.chainweb.com/mainnet/account/r:n_582fed11af00dc626812cd7890bb88e72067f28c.bot?token=coin)**
 - **Community Donation account**: `r:n_582fed11af00dc626812cd7890bb88e72067f28c.community` **[BRO](https://explorer.chainweb.com/mainnet/account/r:n_582fed11af00dc626812cd7890bb88e72067f28c.community?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
-- **EckoDEX Pool**: `P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc` **[KDA](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=coin)** / **[BRO](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
+- **Mercatus Pool**: `P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc` **[KDA](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=coin)** / **[BRO](https://explorer.chainweb.com/mainnet/account/P1J6eqZteaU19umFecSjpEuc7Pea79SdDzz2Vp9LOpc?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
+- **SushiSwap Pool**: `wq4J6zDAFjfproT_n1qfyTOc7LQNzNDNvOrqY008D7I` **[KDA](https://explorer.chainweb.com/mainnet/account/wq4J6zDAFjfproT_n1qfyTOc7LQNzNDNvOrqY008D7I?token=coin)** / **[BRO](https://explorer.chainweb.com/mainnet/account/wq4J6zDAFjfproT_n1qfyTOc7LQNzNDNvOrqY008D7I?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
 
+### Accounts (chain 1)
+- **KDSwap Pool**: `UGo6Bj-aHQAVSskOrkvt1UEjvtFx0fQUB01T9SSMdEg` **[KDA](https://explorer.chainweb.com/mainnet/account/UGo6Bj-aHQAVSskOrkvt1UEjvtFx0fQUB01T9SSMdEg?token=coin)** / **[BRO](https://explorer.chainweb.com/mainnet/account/UGo6Bj-aHQAVSskOrkvt1UEjvtFx0fQUB01T9SSMdEg?token=n_582fed11af00dc626812cd7890bb88e72067f28c.bro)**
 
 ### Keysets (chain 2)
 - **Governance**: `n_582fed11af00dc626812cd7890bb88e72067f28c.governance` **[View-On-chain](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(describe-keyset%20%22n_582fed11af00dc626812cd7890bb88e72067f28c.governance%22))**
 - **Bot**: `n_582fed11af00dc626812cd7890bb88e72067f28c.bot` **[View-On-chain](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(describe-keyset%20%22n_582fed11af00dc626812cd7890bb88e72067f28c.bot%22))**
 - **Sales administration**: `n_582fed11af00dc626812cd7890bb88e72067f28c.sales-operator` **[View-On-chain](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(describe-keyset%20%22n_582fed11af00dc626812cd7890bb88e72067f28c.sales-operator%22))**
 - **Community funds**: `n_582fed11af00dc626812cd7890bb88e72067f28c.community` **[View-On-chain](https://kadenakode.sterlinglong.me/?network=https%3A%2F%2Fapi.chainweb.com&networkId=mainnet01&chainIds=%5B%222%22%5D&gasLimit=15000&gasPrice=0.00001&code=(describe-keyset%20%22n_582fed11af00dc626812cd7890bb88e72067f28c.community%22))**
+
+**Note**: The Treasury only owns some liquidity in Mercatus.. Liquidity on KdSwap and SushiSwap has been deployed by third party community members.
 
 ### Donations
 A donnation account has been created: `r:n_582fed11af00dc626812cd7890bb88e72067f28c.community` on chain 2. Send only $BRO
